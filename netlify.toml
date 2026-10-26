@@ -1,0 +1,15 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+# No backend: the browser calls https://api.data.gov.my directly (it sends
+# Access-Control-Allow-Origin: *), so each visitor gets their own 4 req/min quota.
+
+# Single-page app fallback
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

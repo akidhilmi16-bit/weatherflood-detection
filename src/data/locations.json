@@ -1,0 +1,2546 @@
+{
+ "Ds501": {
+  "name": "Tebedu",
+  "lat": 1.0338,
+  "lon": 110.3932,
+  "state": "Sarawak"
+ },
+ "Ds502": {
+  "name": "Bau",
+  "lat": 1.4147,
+  "lon": 110.1551,
+  "state": "Sarawak"
+ },
+ "Ds503": {
+  "name": "Lundu",
+  "lat": 1.748,
+  "lon": 109.7772,
+  "state": "Sarawak"
+ },
+ "Ds504": {
+  "name": "Kuching",
+  "lat": 1.5339,
+  "lon": 110.3583,
+  "state": "Sarawak"
+ },
+ "Ds505": {
+  "name": "Serian",
+  "lat": 1.1009,
+  "lon": 110.7104,
+  "state": "Sarawak"
+ },
+ "Ds506": {
+  "name": "Samarahan",
+  "lat": 1.396,
+  "lon": 110.7496,
+  "state": "Sarawak"
+ },
+ "Ds507": {
+  "name": "Asajaya",
+  "lat": 1.5422,
+  "lon": 110.6127,
+  "state": "Sarawak"
+ },
+ "Ds508": {
+  "name": "Simunjan",
+  "lat": 1.396,
+  "lon": 110.7496,
+  "state": "Sarawak"
+ },
+ "Ds509": {
+  "name": "Sri Aman",
+  "lat": 1.2088,
+  "lon": 111.408,
+  "state": "Sarawak"
+ },
+ "Ds510": {
+  "name": "Pusa",
+  "lat": 1.5708,
+  "lon": 111.1803,
+  "state": "Sarawak"
+ },
+ "Ds511": {
+  "name": "Betong",
+  "lat": 1.7386,
+  "lon": 111.3383,
+  "state": "Sarawak"
+ },
+ "Ds512": {
+  "name": "Saratok",
+  "lat": 1.7386,
+  "lon": 111.3383,
+  "state": "Sarawak"
+ },
+ "Ds513": {
+  "name": "Kabong",
+  "lat": 1.8822,
+  "lon": 111.2695,
+  "state": "Sarawak"
+ },
+ "Ds514": {
+  "name": "Lubok Antu",
+  "lat": 1.0421,
+  "lon": 111.8332,
+  "state": "Sarawak"
+ },
+ "Ds515": {
+  "name": "Pakan",
+  "lat": 1.783,
+  "lon": 111.6626,
+  "state": "Sarawak"
+ },
+ "Ds516": {
+  "name": "Sarikei",
+  "lat": 2.0508,
+  "lon": 111.4176,
+  "state": "Sarawak"
+ },
+ "Ds517": {
+  "name": "Tanjung Manis",
+  "lat": 2.1338,
+  "lon": 111.3357,
+  "state": "Sarawak"
+ },
+ "Ds518": {
+  "name": "Julau",
+  "lat": 1.8198,
+  "lon": 111.899,
+  "state": "Sarawak"
+ },
+ "Ds519": {
+  "name": "Meradong",
+  "lat": 2.1676,
+  "lon": 111.678,
+  "state": "Sarawak"
+ },
+ "Ds520": {
+  "name": "Daro",
+  "lat": 2.514,
+  "lon": 111.4323,
+  "state": "Sarawak"
+ },
+ "Ds521": {
+  "name": "Sibu",
+  "lat": 2.0998,
+  "lon": 112.1573,
+  "state": "Sarawak"
+ },
+ "Ds522": {
+  "name": "Kanowit",
+  "lat": 2.0998,
+  "lon": 112.1573,
+  "state": "Sarawak"
+ },
+ "Ds523": {
+  "name": "Song",
+  "lat": 1.8142,
+  "lon": 112.6479,
+  "state": "Sarawak"
+ },
+ "Ds524": {
+  "name": "Matu",
+  "lat": 2.6541,
+  "lon": 111.6853,
+  "state": "Sarawak"
+ },
+ "Ds525": {
+  "name": "Dalat",
+  "lat": 2.8868,
+  "lon": 112.0887,
+  "state": "Sarawak"
+ },
+ "Ds526": {
+  "name": "Selangau",
+  "lat": 2.4956,
+  "lon": 112.3525,
+  "state": "Sarawak"
+ },
+ "Ds527": {
+  "name": "Mukah",
+  "lat": 2.8868,
+  "lon": 112.0887,
+  "state": "Sarawak"
+ },
+ "Ds528": {
+  "name": "Kapit",
+  "lat": 2.0172,
+  "lon": 112.9414,
+  "state": "Sarawak"
+ },
+ "Ds529": {
+  "name": "Bukit Mabong",
+  "lat": 1.7647,
+  "lon": 113.841,
+  "state": "Sarawak"
+ },
+ "Ds530": {
+  "name": "Tatau",
+  "lat": 2.6234,
+  "lon": 113.1504,
+  "state": "Sarawak"
+ },
+ "Ds531": {
+  "name": "Bintulu",
+  "lat": 3.1874,
+  "lon": 113.0473,
+  "state": "Sarawak"
+ },
+ "Ds532": {
+  "name": "Sebauh",
+  "lat": 3.1089,
+  "lon": 113.2692,
+  "state": "Sarawak"
+ },
+ "Ds533": {
+  "name": "Belaga",
+  "lat": 2.6609,
+  "lon": 114.3817,
+  "state": "Sarawak"
+ },
+ "Ds534": {
+  "name": "Subis",
+  "lat": 3.7596,
+  "lon": 113.7142,
+  "state": "Sarawak"
+ },
+ "Ds535": {
+  "name": "Beluru",
+  "lat": 3.5515,
+  "lon": 114.1291,
+  "state": "Sarawak"
+ },
+ "Ds536": {
+  "name": "Telang Usan",
+  "lat": 3.3172,
+  "lon": 114.8258,
+  "state": "Sarawak"
+ },
+ "Ds537": {
+  "name": "Miri",
+  "lat": 4.4029,
+  "lon": 113.9997,
+  "state": "Sarawak"
+ },
+ "Ds538": {
+  "name": "Marudi",
+  "lat": 4.1773,
+  "lon": 114.3258,
+  "state": "Sarawak"
+ },
+ "Ds539": {
+  "name": "Limbang",
+  "lat": 4.352,
+  "lon": 115.0602,
+  "state": "Sarawak"
+ },
+ "Ds540": {
+  "name": "Lawas",
+  "lat": 4.4551,
+  "lon": 115.4272,
+  "state": "Sarawak"
+ },
+ "Ds541": {
+  "name": "Sipitang",
+  "lat": 5.0736,
+  "lon": 115.5509,
+  "state": "Sabah"
+ },
+ "Ds543": {
+  "name": "Tenom",
+  "lat": 4.9104,
+  "lon": 115.9051,
+  "state": "Sabah"
+ },
+ "Ds544": {
+  "name": "Kuala Penyu",
+  "lat": 5.5726,
+  "lon": 115.601,
+  "state": "Sabah"
+ },
+ "Ds545": {
+  "name": "Beaufort",
+  "lat": 5.7002,
+  "lon": 115.9193,
+  "state": "Sabah"
+ },
+ "Ds546": {
+  "name": "Nabawan",
+  "lat": 4.6955,
+  "lon": 116.4838,
+  "state": "Sabah"
+ },
+ "Ds547": {
+  "name": "Keningau",
+  "lat": 5.3424,
+  "lon": 116.1614,
+  "state": "Sabah"
+ },
+ "Ds548": {
+  "name": "Papar",
+  "lat": 5.7461,
+  "lon": 116.045,
+  "state": "Sabah"
+ },
+ "Ds549": {
+  "name": "Putatan",
+  "lat": 5.8317,
+  "lon": 116.0462,
+  "state": "Sabah"
+ },
+ "Ds550": {
+  "name": "Penampang",
+  "lat": 5.9563,
+  "lon": 116.0695,
+  "state": "Sabah"
+ },
+ "Ds551": {
+  "name": "Tambunan",
+  "lat": 5.9804,
+  "lon": 116.0762,
+  "state": "Sabah"
+ },
+ "Ds552": {
+  "name": "Tawau",
+  "lat": 4.2435,
+  "lon": 117.8853,
+  "state": "Sabah"
+ },
+ "Ds553": {
+  "name": "Tongod",
+  "lat": 5.0658,
+  "lon": 116.9941,
+  "state": "Sabah"
+ },
+ "Ds554": {
+  "name": "Kota Kinabalu",
+  "lat": 5.95,
+  "lon": 116.144,
+  "state": "Sabah"
+ },
+ "Ds555": {
+  "name": "Tuaran",
+  "lat": 6.1798,
+  "lon": 116.2263,
+  "state": "Sabah"
+ },
+ "Ds556": {
+  "name": "Ranau",
+  "lat": 5.8842,
+  "lon": 118.0078,
+  "state": "Sabah"
+ },
+ "Ds557": {
+  "name": "Kunak",
+  "lat": 4.6858,
+  "lon": 118.0171,
+  "state": "Sabah"
+ },
+ "Ds558": {
+  "name": "Kota Belud",
+  "lat": 5.9804,
+  "lon": 116.0762,
+  "state": "Sabah"
+ },
+ "Ds559": {
+  "name": "Semporna",
+  "lat": 4.4791,
+  "lon": 118.4298,
+  "state": "Sabah"
+ },
+ "Ds560": {
+  "name": "Telupid",
+  "lat": 5.7903,
+  "lon": 117.1698,
+  "state": "Sabah"
+ },
+ "Ds561": {
+  "name": "Kota Marudu",
+  "lat": 5.9804,
+  "lon": 116.0762,
+  "state": "Sabah"
+ },
+ "Ds562": {
+  "name": "Lahad Datu",
+  "lat": 5.5685,
+  "lon": 117.9331,
+  "state": "Sabah"
+ },
+ "Ds563": {
+  "name": "Kinabatangan",
+  "lat": 5.7162,
+  "lon": 118.3472,
+  "state": "Sabah"
+ },
+ "Ds564": {
+  "name": "Beluran",
+  "lat": 5.8967,
+  "lon": 117.5587,
+  "state": "Sabah"
+ },
+ "Ds565": {
+  "name": "Sandakan",
+  "lat": 5.889,
+  "lon": 117.9941,
+  "state": "Sabah"
+ },
+ "Ds566": {
+  "name": "Pitas",
+  "lat": 6.7317,
+  "lon": 117.1254,
+  "state": "Sabah"
+ },
+ "Ds567": {
+  "name": "Kudat",
+  "lat": 7.2316,
+  "lon": 117.1712,
+  "state": "Sabah"
+ },
+ "Ds568": {
+  "name": "Membakut",
+  "lat": 5.504,
+  "lon": 115.8052,
+  "state": "Sabah"
+ },
+ "Ds570": {
+  "name": "Labuk & Sugut",
+  "lat": 5.8967,
+  "lon": 117.5587,
+  "state": "Sabah"
+ },
+ "Ds571": {
+  "name": "Kalabakan",
+  "lat": 4.4809,
+  "lon": 117.4071,
+  "state": "Sabah"
+ },
+ "Ds572": {
+  "name": "Sook",
+  "lat": 5.1424,
+  "lon": 116.2896,
+  "state": "Sabah"
+ },
+ "Ds573": {
+  "name": "Sebuyau",
+  "lat": 1.3918,
+  "lon": 111.0113,
+  "state": "Sarawak"
+ },
+ "Ds574": {
+  "name": "Gedong",
+  "lat": 1.2981,
+  "lon": 110.6784,
+  "state": "Sarawak"
+ },
+ "Ds575": {
+  "name": "Pantu",
+  "lat": 1.1736,
+  "lon": 111.1316,
+  "state": "Sarawak"
+ },
+ "Ds576": {
+  "name": "Lingga",
+  "lat": 1.3519,
+  "lon": 111.1701,
+  "state": "Sarawak"
+ },
+ "Ds577": {
+  "name": "Siburan",
+  "lat": 1.3615,
+  "lon": 110.4043,
+  "state": "Sarawak"
+ },
+ "Ds578": {
+  "name": "Labuan",
+  "lat": 5.2768,
+  "lon": 115.2471,
+  "state": "Labuan"
+ },
+ "Ds579": {
+  "name": "Bario",
+  "lat": 3.7479,
+  "lon": 115.4604,
+  "state": "Sarawak"
+ },
+ "Dv501": {
+  "name": "Kuching",
+  "lat": 1.5329,
+  "lon": 110.0454,
+  "state": "Sarawak"
+ },
+ "Dv502": {
+  "name": "Serian",
+  "lat": 1.1617,
+  "lon": 110.5606,
+  "state": "Sarawak"
+ },
+ "Dv503": {
+  "name": "Samarahan",
+  "lat": 1.4668,
+  "lon": 110.4818,
+  "state": "Sarawak"
+ },
+ "Dv504": {
+  "name": "Sri Aman",
+  "lat": 1.2376,
+  "lon": 111.4621,
+  "state": "Sarawak"
+ },
+ "Dv505": {
+  "name": "Betong",
+  "lat": 1.4116,
+  "lon": 111.528,
+  "state": "Sarawak"
+ },
+ "Dv506": {
+  "name": "Sarikei",
+  "lat": 2.1295,
+  "lon": 111.523,
+  "state": "Sarawak"
+ },
+ "Dv507": {
+  "name": "Sibu",
+  "lat": 2.2907,
+  "lon": 111.8255,
+  "state": "Sarawak"
+ },
+ "Dv508": {
+  "name": "Mukah",
+  "lat": 2.893,
+  "lon": 112.0913,
+  "state": "Sarawak"
+ },
+ "Dv509": {
+  "name": "Kapit",
+  "lat": 2.0044,
+  "lon": 112.9363,
+  "state": "Sarawak"
+ },
+ "Dv510": {
+  "name": "Bintulu",
+  "lat": 3.18,
+  "lon": 113.4999,
+  "state": "Sarawak"
+ },
+ "Dv511": {
+  "name": "Miri",
+  "lat": 4,
+  "lon": 113.9999,
+  "state": "Sarawak"
+ },
+ "Dv512": {
+  "name": "Limbang",
+  "lat": 4.2999,
+  "lon": 114.9999,
+  "state": "Sarawak"
+ },
+ "Dv514": {
+  "name": "Pedalaman",
+  "lat": 5.33,
+  "lon": 116.16,
+  "state": "Sabah"
+ },
+ "Dv515": {
+  "name": "Pantai Barat",
+  "lat": 5.98,
+  "lon": 116.07,
+  "state": "Sabah"
+ },
+ "Dv516": {
+  "name": "Tawau",
+  "lat": 4.5,
+  "lon": 117.9999,
+  "state": "Sabah"
+ },
+ "Dv517": {
+  "name": "Sandakan",
+  "lat": 5.5,
+  "lon": 117.4999,
+  "state": "Sabah"
+ },
+ "Dv518": {
+  "name": "Kudat",
+  "lat": 6.8333,
+  "lon": 117.1165,
+  "state": "Sabah"
+ },
+ "Rc501": {
+  "name": "Taman Nasional Kinabalu",
+  "lat": 6.2471,
+  "lon": 116.6768,
+  "state": "Sabah"
+ },
+ "Rc502": {
+  "name": "Pulau Sipadan",
+  "lat": 4.1148,
+  "lon": 118.6288,
+  "state": "Sabah"
+ },
+ "Rc503": {
+  "name": "Kundasang",
+  "lat": 5.9857,
+  "lon": 116.5745,
+  "state": "Sabah"
+ },
+ "Rc504": {
+  "name": "Pantai Tanjung Aru",
+  "lat": 5.9357,
+  "lon": 116.0467,
+  "state": "Sabah"
+ },
+ "Rc505": {
+  "name": "Pulau Bohey Dulang",
+  "lat": 4.5994,
+  "lon": 118.7866,
+  "state": "Sabah"
+ },
+ "Rc506": {
+  "name": "Pulau Mataking",
+  "lat": 4.5763,
+  "lon": 118.9489,
+  "state": "Sabah"
+ },
+ "Rc507": {
+  "name": "Sepilok",
+  "lat": 5.8656,
+  "lon": 117.9493,
+  "state": "Sabah"
+ },
+ "Rc508": {
+  "name": "Pulau Kapalai",
+  "lat": 4.2208,
+  "lon": 118.6891,
+  "state": "Sabah"
+ },
+ "Rc509": {
+  "name": "Pulau Mabul",
+  "lat": 4.2458,
+  "lon": 118.6313,
+  "state": "Sabah"
+ },
+ "Rc510": {
+  "name": "Pulau Mantanani",
+  "lat": 6.7131,
+  "lon": 116.3521,
+  "state": "Sabah"
+ },
+ "Tn001": {
+  "name": "Perlis",
+  "lat": 6.4868,
+  "lon": 100.2578,
+  "state": "Perlis"
+ },
+ "Tn002": {
+  "name": "Jitra",
+  "lat": 6.2668,
+  "lon": 100.4197,
+  "state": "Kedah"
+ },
+ "Tn003": {
+  "name": "Alor Star",
+  "lat": 6.1232,
+  "lon": 100.3684,
+  "state": "Kedah"
+ },
+ "Tn004": {
+  "name": "Pokok Sena",
+  "lat": 6.1731,
+  "lon": 100.5204,
+  "state": "Kedah"
+ },
+ "Tn005": {
+  "name": "Kuala Nerang",
+  "lat": 6.2552,
+  "lon": 100.6071,
+  "state": "Kedah"
+ },
+ "Tn006": {
+  "name": "Pendang",
+  "lat": 5.9721,
+  "lon": 100.5502,
+  "state": "Kedah"
+ },
+ "Tn007": {
+  "name": "Yan",
+  "lat": 5.8483,
+  "lon": 100.4152,
+  "state": "Kedah"
+ },
+ "Tn008": {
+  "name": "Sungai Petani",
+  "lat": 5.6435,
+  "lon": 100.487,
+  "state": "Kedah"
+ },
+ "Tn009": {
+  "name": "Balik Pulau",
+  "lat": 5.3507,
+  "lon": 100.2349,
+  "state": "Penang"
+ },
+ "Tn010": {
+  "name": "Ayer Itam",
+  "lat": 5.4019,
+  "lon": 100.2778,
+  "state": "Penang"
+ },
+ "Tn011": {
+  "name": "Sik",
+  "lat": 5.9239,
+  "lon": 100.8231,
+  "state": "Kedah"
+ },
+ "Tn012": {
+  "name": "Kepala Batas",
+  "lat": 5.5168,
+  "lon": 100.4255,
+  "state": "Penang"
+ },
+ "Tn013": {
+  "name": "Georgetown",
+  "lat": 5.4026,
+  "lon": 100.3036,
+  "state": "Penang"
+ },
+ "Tn014": {
+  "name": "Butterworth",
+  "lat": 5.4082,
+  "lon": 100.3697,
+  "state": "Penang"
+ },
+ "Tn015": {
+  "name": "Bayan Lepas",
+  "lat": 5.2948,
+  "lon": 100.2596,
+  "state": "Penang"
+ },
+ "Tn016": {
+  "name": "Perai",
+  "lat": 5.3871,
+  "lon": 100.3822,
+  "state": "Penang"
+ },
+ "Tn017": {
+  "name": "Bukit Tengah",
+  "lat": 5.366,
+  "lon": 100.421,
+  "state": "Penang"
+ },
+ "Tn018": {
+  "name": "Bukit Mertajam",
+  "lat": 5.3643,
+  "lon": 100.461,
+  "state": "Penang"
+ },
+ "Tn019": {
+  "name": "Batu Kawan",
+  "lat": 5.2626,
+  "lon": 100.4305,
+  "state": "Penang"
+ },
+ "Tn020": {
+  "name": "Kulim",
+  "lat": 5.3707,
+  "lon": 100.6172,
+  "state": "Kedah"
+ },
+ "Tn021": {
+  "name": "Baling",
+  "lat": 5.5507,
+  "lon": 100.7976,
+  "state": "Kedah"
+ },
+ "Tn022": {
+  "name": "Nibong Tebal",
+  "lat": 5.1701,
+  "lon": 100.4785,
+  "state": "Penang"
+ },
+ "Tn024": {
+  "name": "Parit Buntar",
+  "lat": 5.092,
+  "lon": 100.4863,
+  "state": "Perak"
+ },
+ "Tn025": {
+  "name": "Selama",
+  "lat": 5.2181,
+  "lon": 100.6917,
+  "state": "Perak"
+ },
+ "Tn026": {
+  "name": "Bagan Serai",
+  "lat": 5.0122,
+  "lon": 100.5336,
+  "state": "Perak"
+ },
+ "Tn027": {
+  "name": "Gerik",
+  "lat": 5.4307,
+  "lon": 101.1296,
+  "state": "Perak"
+ },
+ "Tn028": {
+  "name": "Lenggong",
+  "lat": 5.1095,
+  "lon": 100.9679,
+  "state": "Perak"
+ },
+ "Tn029": {
+  "name": "Taiping",
+  "lat": 4.8547,
+  "lon": 100.7439,
+  "state": "Perak"
+ },
+ "Tn030": {
+  "name": "Rantau Panjang",
+  "lat": 6.0181,
+  "lon": 101.9728,
+  "state": "Kelantan"
+ },
+ "Tn031": {
+  "name": "Tumpat",
+  "lat": 6.1764,
+  "lon": 102.1663,
+  "state": "Kelantan"
+ },
+ "Tn032": {
+  "name": "Pasir Mas",
+  "lat": 6.0081,
+  "lon": 102.0925,
+  "state": "Kelantan"
+ },
+ "Tn033": {
+  "name": "Kota Bharu",
+  "lat": 6.1248,
+  "lon": 102.2378,
+  "state": "Kelantan"
+ },
+ "Tn034": {
+  "name": "Jeli",
+  "lat": 5.59,
+  "lon": 101.8172,
+  "state": "Kelantan"
+ },
+ "Tn035": {
+  "name": "Kuala Kangsar",
+  "lat": 4.7721,
+  "lon": 100.9409,
+  "state": "Perak"
+ },
+ "Tn036": {
+  "name": "Sungai Siput",
+  "lat": 4.8197,
+  "lon": 101.0722,
+  "state": "Perak"
+ },
+ "Tn037": {
+  "name": "Bachok",
+  "lat": 5.9951,
+  "lon": 102.3867,
+  "state": "Kelantan"
+ },
+ "Tn038": {
+  "name": "Tanah Merah",
+  "lat": 5.7663,
+  "lon": 102.0341,
+  "state": "Kelantan"
+ },
+ "Tn039": {
+  "name": "Machang",
+  "lat": 5.7677,
+  "lon": 102.2381,
+  "state": "Kelantan"
+ },
+ "Tn040": {
+  "name": "Sitiawan",
+  "lat": 4.2162,
+  "lon": 100.6952,
+  "state": "Perak"
+ },
+ "Tn041": {
+  "name": "Ipoh",
+  "lat": 4.5987,
+  "lon": 101.09,
+  "state": "Perak"
+ },
+ "Tn042": {
+  "name": "Pasir Puteh",
+  "lat": 5.8346,
+  "lon": 102.383,
+  "state": "Kelantan"
+ },
+ "Tn043": {
+  "name": "Batu Gajah",
+  "lat": 4.4795,
+  "lon": 101.038,
+  "state": "Perak"
+ },
+ "Tn044": {
+  "name": "Seri Iskandar",
+  "lat": 4.3613,
+  "lon": 100.9509,
+  "state": "Perak"
+ },
+ "Tn045": {
+  "name": "Kuala Krai",
+  "lat": 5.5312,
+  "lon": 102.1994,
+  "state": "Kelantan"
+ },
+ "Tn046": {
+  "name": "Gopeng",
+  "lat": 4.4768,
+  "lon": 101.1681,
+  "state": "Perak"
+ },
+ "Tn047": {
+  "name": "Besut",
+  "lat": 5.5833,
+  "lon": 102.5,
+  "state": "Terengganu"
+ },
+ "Tn048": {
+  "name": "Jerteh",
+  "lat": 5.7381,
+  "lon": 102.4972,
+  "state": "Terengganu"
+ },
+ "Tn049": {
+  "name": "Bagan Datuk",
+  "lat": 3.9167,
+  "lon": 100.9167,
+  "state": "Perak"
+ },
+ "Tn050": {
+  "name": "Kampar",
+  "lat": 4.3,
+  "lon": 101.15,
+  "state": "Perak"
+ },
+ "Tn051": {
+  "name": "Teluk Intan",
+  "lat": 4.0232,
+  "lon": 101.0262,
+  "state": "Perak"
+ },
+ "Tn052": {
+  "name": "Tapah",
+  "lat": 4.1991,
+  "lon": 101.2599,
+  "state": "Perak"
+ },
+ "Tn053": {
+  "name": "Gua Musang",
+  "lat": 5.0198,
+  "lon": 102.0383,
+  "state": "Kelantan"
+ },
+ "Tn054": {
+  "name": "Sabak Bernam",
+  "lat": 3.6871,
+  "lon": 101.0581,
+  "state": "Selangor"
+ },
+ "Tn055": {
+  "name": "Bandar Permaisuri",
+  "lat": 5.5207,
+  "lon": 102.747,
+  "state": "Terengganu"
+ },
+ "Tn056": {
+  "name": "Setiu",
+  "lat": 5.5501,
+  "lon": 102.7355,
+  "state": "Terengganu"
+ },
+ "Tn057": {
+  "name": "Slim River",
+  "lat": 3.8311,
+  "lon": 101.4026,
+  "state": "Perak"
+ },
+ "Tn058": {
+  "name": "Kuala Nerus",
+  "lat": 5.3957,
+  "lon": 103.0615,
+  "state": "Terengganu"
+ },
+ "Tn059": {
+  "name": "Kuala Terengganu",
+  "lat": 5.3296,
+  "lon": 103.1383,
+  "state": "Terengganu"
+ },
+ "Tn060": {
+  "name": "Kuala Lipis",
+  "lat": 4.187,
+  "lon": 102.0544,
+  "state": "Pahang"
+ },
+ "Tn061": {
+  "name": "Kuala Selangor",
+  "lat": 3.3621,
+  "lon": 101.3456,
+  "state": "Selangor"
+ },
+ "Tn062": {
+  "name": "Raub",
+  "lat": 3.8844,
+  "lon": 101.792,
+  "state": "Pahang"
+ },
+ "Tn063": {
+  "name": "Kuala Kubu Bharu",
+  "lat": 3.5633,
+  "lon": 101.6607,
+  "state": "Selangor"
+ },
+ "Tn064": {
+  "name": "Rawang",
+  "lat": 3.3198,
+  "lon": 101.5773,
+  "state": "Selangor"
+ },
+ "Tn065": {
+  "name": "Selayang",
+  "lat": 3.2537,
+  "lon": 101.6539,
+  "state": "Selangor"
+ },
+ "Tn066": {
+  "name": "Pelabuhan Klang",
+  "lat": 3.0028,
+  "lon": 101.3967,
+  "state": "Selangor"
+ },
+ "Tn067": {
+  "name": "Kepong",
+  "lat": 3.214,
+  "lon": 101.6348,
+  "state": "Kuala Lumpur"
+ },
+ "Tn068": {
+  "name": "Jerantut",
+  "lat": 4.2834,
+  "lon": 102.5575,
+  "state": "Pahang"
+ },
+ "Tn069": {
+  "name": "Batu Caves",
+  "lat": 3.2369,
+  "lon": 101.6833,
+  "state": "Selangor"
+ },
+ "Tn070": {
+  "name": "Shah Alam",
+  "lat": 3.0739,
+  "lon": 101.5185,
+  "state": "Selangor"
+ },
+ "Tn071": {
+  "name": "Sentul",
+  "lat": 3.1769,
+  "lon": 101.6904,
+  "state": "Kuala Lumpur"
+ },
+ "Tn072": {
+  "name": "Bentong",
+  "lat": 3.3625,
+  "lon": 102.0173,
+  "state": "Pahang"
+ },
+ "Tn073": {
+  "name": "Jalan Duta",
+  "lat": 3.1504,
+  "lon": 101.6747,
+  "state": "Kuala Lumpur"
+ },
+ "Tn074": {
+  "name": "Damansara",
+  "lat": 3.1537,
+  "lon": 101.5935,
+  "state": "Selangor"
+ },
+ "Tn075": {
+  "name": "Setapak",
+  "lat": 3.1976,
+  "lon": 101.714,
+  "state": "Kuala Lumpur"
+ },
+ "Tn076": {
+  "name": "Petaling Jaya",
+  "lat": 3.0989,
+  "lon": 101.6454,
+  "state": "Selangor"
+ },
+ "Tn077": {
+  "name": "Subang Jaya",
+  "lat": 3.0515,
+  "lon": 101.5823,
+  "state": "Selangor"
+ },
+ "Tn078": {
+  "name": "Bangsar",
+  "lat": 3.1308,
+  "lon": 101.6694,
+  "state": "Kuala Lumpur"
+ },
+ "Tn079": {
+  "name": "Kuala Lumpur",
+  "lat": 3.1517,
+  "lon": 101.6942,
+  "state": "Kuala Lumpur"
+ },
+ "Tn080": {
+  "name": "Bukit Bintang",
+  "lat": 3.1471,
+  "lon": 101.7086,
+  "state": "Kuala Lumpur"
+ },
+ "Tn081": {
+  "name": "Ampang",
+  "lat": 3.122,
+  "lon": 101.7635,
+  "state": "Selangor"
+ },
+ "Tn082": {
+  "name": "Dungun",
+  "lat": 4.7644,
+  "lon": 103.4184,
+  "state": "Terengganu"
+ },
+ "Tn083": {
+  "name": "Sungai Besi",
+  "lat": 3.0652,
+  "lon": 101.7109,
+  "state": "Kuala Lumpur"
+ },
+ "Tn084": {
+  "name": "Banting",
+  "lat": 2.8028,
+  "lon": 101.4957,
+  "state": "Selangor"
+ },
+ "Tn085": {
+  "name": "Seri Kembangan",
+  "lat": 3.0341,
+  "lon": 101.7056,
+  "state": "Selangor"
+ },
+ "Tn086": {
+  "name": "Cheras",
+  "lat": 3.0992,
+  "lon": 101.7374,
+  "state": "Kuala Lumpur"
+ },
+ "Tn087": {
+  "name": "Cyberjaya",
+  "lat": 2.9339,
+  "lon": 101.6456,
+  "state": "Selangor"
+ },
+ "Tn088": {
+  "name": "Putrajaya",
+  "lat": 2.9384,
+  "lon": 101.6922,
+  "state": "Putrajaya"
+ },
+ "Tn089": {
+  "name": "Paka",
+  "lat": 4.6369,
+  "lon": 103.436,
+  "state": "Terengganu"
+ },
+ "Tn090": {
+  "name": "Kajang",
+  "lat": 2.9948,
+  "lon": 101.7897,
+  "state": "Selangor"
+ },
+ "Tn091": {
+  "name": "Mentakab",
+  "lat": 3.4865,
+  "lon": 102.3515,
+  "state": "Pahang"
+ },
+ "Tn092": {
+  "name": "Bangi",
+  "lat": 2.9541,
+  "lon": 101.781,
+  "state": "Selangor"
+ },
+ "Tn093": {
+  "name": "Semenyih",
+  "lat": 2.9474,
+  "lon": 101.846,
+  "state": "Selangor"
+ },
+ "Tn094": {
+  "name": "Kertih",
+  "lat": 4.5083,
+  "lon": 103.4418,
+  "state": "Terengganu"
+ },
+ "Tn095": {
+  "name": "Temerloh",
+  "lat": 3.6124,
+  "lon": 102.2567,
+  "state": "Pahang"
+ },
+ "Tn096": {
+  "name": "Nilai",
+  "lat": 2.8021,
+  "lon": 101.7982,
+  "state": "Negeri Sembilan"
+ },
+ "Tn097": {
+  "name": "Sepang",
+  "lat": 2.8009,
+  "lon": 101.7094,
+  "state": "Selangor"
+ },
+ "Tn098": {
+  "name": "Kemaman",
+  "lat": 4.2346,
+  "lon": 103.4236,
+  "state": "Terengganu"
+ },
+ "Tn099": {
+  "name": "Kuala Klawang",
+  "lat": 2.9379,
+  "lon": 102.0709,
+  "state": "Negeri Sembilan"
+ },
+ "Tn100": {
+  "name": "Jelebu",
+  "lat": 3.0366,
+  "lon": 102.1179,
+  "state": "Negeri Sembilan"
+ },
+ "Tn101": {
+  "name": "Triang",
+  "lat": 3.2467,
+  "lon": 102.4162,
+  "state": "Pahang"
+ },
+ "Tn102": {
+  "name": "Bera",
+  "lat": 3.2367,
+  "lon": 102.5418,
+  "state": "Pahang"
+ },
+ "Tn103": {
+  "name": "Maran",
+  "lat": 3.6014,
+  "lon": 102.641,
+  "state": "Pahang"
+ },
+ "Tn104": {
+  "name": "Seremban",
+  "lat": 2.7231,
+  "lon": 101.9401,
+  "state": "Negeri Sembilan"
+ },
+ "Tn105": {
+  "name": "Port Dickson",
+  "lat": 2.5262,
+  "lon": 101.8106,
+  "state": "Negeri Sembilan"
+ },
+ "Tn106": {
+  "name": "Kuala Pilah",
+  "lat": 2.7431,
+  "lon": 102.2155,
+  "state": "Negeri Sembilan"
+ },
+ "Tn107": {
+  "name": "Rembau",
+  "lat": 2.5579,
+  "lon": 102.1082,
+  "state": "Negeri Sembilan"
+ },
+ "Tn108": {
+  "name": "Kuantan",
+  "lat": 3.7974,
+  "lon": 103.3219,
+  "state": "Pahang"
+ },
+ "Tn109": {
+  "name": "Jempol",
+  "lat": 2.8503,
+  "lon": 102.5082,
+  "state": "Negeri Sembilan"
+ },
+ "Tn110": {
+  "name": "Tampin",
+  "lat": 2.5542,
+  "lon": 102.446,
+  "state": "Negeri Sembilan"
+ },
+ "Tn111": {
+  "name": "Masjid Tanah",
+  "lat": 2.3522,
+  "lon": 102.109,
+  "state": "Malacca"
+ },
+ "Tn112": {
+  "name": "Alor Gajah",
+  "lat": 2.3835,
+  "lon": 102.2108,
+  "state": "Malacca"
+ },
+ "Tn113": {
+  "name": "Tangga Batu",
+  "lat": 2.2495,
+  "lon": 102.1555,
+  "state": "Malacca"
+ },
+ "Tn114": {
+  "name": "Pekan",
+  "lat": 3.3782,
+  "lon": 103.2096,
+  "state": "Pahang"
+ },
+ "Tn115": {
+  "name": "Durian Tunggal",
+  "lat": 2.3118,
+  "lon": 102.2821,
+  "state": "Malacca"
+ },
+ "Tn116": {
+  "name": "Muadzam Shah",
+  "lat": 3.0645,
+  "lon": 103.0813,
+  "state": "Pahang"
+ },
+ "Tn117": {
+  "name": "Gemas",
+  "lat": 2.5813,
+  "lon": 102.6117,
+  "state": "Negeri Sembilan"
+ },
+ "Tn118": {
+  "name": "Ayer Keroh",
+  "lat": 2.256,
+  "lon": 102.2915,
+  "state": "Malacca"
+ },
+ "Tn119": {
+  "name": "Bandaraya Melaka",
+  "lat": 2.1943,
+  "lon": 102.2487,
+  "state": "Malacca"
+ },
+ "Tn120": {
+  "name": "Jasin",
+  "lat": 2.3058,
+  "lon": 102.4223,
+  "state": "Malacca"
+ },
+ "Tn121": {
+  "name": "Tangkak",
+  "lat": 2.25,
+  "lon": 102.5833,
+  "state": "Johor"
+ },
+ "Tn122": {
+  "name": "Merlimau",
+  "lat": 2.1464,
+  "lon": 102.4258,
+  "state": "Malacca"
+ },
+ "Tn123": {
+  "name": "Segamat",
+  "lat": 2.4922,
+  "lon": 102.8449,
+  "state": "Johor"
+ },
+ "Tn124": {
+  "name": "Muar",
+  "lat": 2.05,
+  "lon": 102.5667,
+  "state": "Johor"
+ },
+ "Tn125": {
+  "name": "Pagoh",
+  "lat": 2.1495,
+  "lon": 102.7715,
+  "state": "Johor"
+ },
+ "Tn126": {
+  "name": "Labis",
+  "lat": 2.3869,
+  "lon": 103.02,
+  "state": "Johor"
+ },
+ "Tn127": {
+  "name": "Kuala Rompin",
+  "lat": 2.8058,
+  "lon": 103.4885,
+  "state": "Pahang"
+ },
+ "Tn128": {
+  "name": "Yong Peng",
+  "lat": 2.0132,
+  "lon": 103.0571,
+  "state": "Johor"
+ },
+ "Tn129": {
+  "name": "Batu Pahat",
+  "lat": 1.9333,
+  "lon": 103,
+  "state": "Johor"
+ },
+ "Tn130": {
+  "name": "Ayer Hitam",
+  "lat": 1.9182,
+  "lon": 103.1795,
+  "state": "Johor"
+ },
+ "Tn131": {
+  "name": "Kluang",
+  "lat": 2.0323,
+  "lon": 103.3191,
+  "state": "Johor"
+ },
+ "Tn132": {
+  "name": "Mersing",
+  "lat": 2.4299,
+  "lon": 103.8355,
+  "state": "Johor"
+ },
+ "Tn133": {
+  "name": "Simpang Renggam",
+  "lat": 1.8267,
+  "lon": 103.3087,
+  "state": "Johor"
+ },
+ "Tn134": {
+  "name": "Pontian",
+  "lat": 1.5,
+  "lon": 103.5,
+  "state": "Johor"
+ },
+ "Tn135": {
+  "name": "Kulai",
+  "lat": 1.6667,
+  "lon": 103.6,
+  "state": "Johor"
+ },
+ "Tn136": {
+  "name": "Senai",
+  "lat": 1.6012,
+  "lon": 103.6447,
+  "state": "Johor"
+ },
+ "Tn137": {
+  "name": "Kota Tinggi",
+  "lat": 1.7337,
+  "lon": 103.9007,
+  "state": "Johor"
+ },
+ "Tn138": {
+  "name": "Iskandar Puteri",
+  "lat": 1.4523,
+  "lon": 103.6145,
+  "state": "Johor"
+ },
+ "Tn139": {
+  "name": "Johor Bahru",
+  "lat": 1.4582,
+  "lon": 103.7649,
+  "state": "Johor"
+ },
+ "Tn140": {
+  "name": "Pasir Gudang",
+  "lat": 1.4953,
+  "lon": 103.9207,
+  "state": "Johor"
+ },
+ "Tn141": {
+  "name": "Lojing",
+  "lat": 4.6316,
+  "lon": 101.4604,
+  "state": "Kelantan"
+ },
+ "Tn142": {
+  "name": "Penawar",
+  "lat": 1.5538,
+  "lon": 104.2308,
+  "state": "Johor"
+ },
+ "Tn143": {
+  "name": "Kuah",
+  "lat": 6.3225,
+  "lon": 99.8475,
+  "state": "Kedah"
+ },
+ "Tn144": {
+  "name": "Kubang Kerian",
+  "lat": 6.094,
+  "lon": 102.2845,
+  "state": "Kelantan"
+ },
+ "Tn145": {
+  "name": "Tanah Rata - Brinchang",
+  "lat": 4.49,
+  "lon": 101.38,
+  "state": "Pahang"
+ },
+ "Tn146": {
+  "name": "Tanjong Malim",
+  "lat": 3.69,
+  "lon": 101.5235,
+  "state": "Perak"
+ },
+ "Tn147": {
+  "name": "Meru",
+  "lat": 3.1387,
+  "lon": 101.4411,
+  "state": "Selangor"
+ },
+ "Tn148": {
+  "name": "Kelana Jaya",
+  "lat": 3.1039,
+  "lon": 101.5967,
+  "state": "Selangor"
+ },
+ "Tn149": {
+  "name": "Bandar Baru Salak Tinggi",
+  "lat": 2.8123,
+  "lon": 101.7373,
+  "state": "Selangor"
+ },
+ "Tn150": {
+  "name": "Jertih",
+  "lat": 5.7381,
+  "lon": 102.4972,
+  "state": "Terengganu"
+ },
+ "Tn151": {
+  "name": "Pekan Nenas",
+  "lat": 1.5068,
+  "lon": 103.5127,
+  "state": "Johor"
+ },
+ "Tn152": {
+  "name": "Bandar Tun Abdul Razak, Jengka",
+  "lat": 3.75,
+  "lon": 102.55,
+  "state": "Pahang"
+ },
+ "Tn153": {
+  "name": "Ulu Tiram",
+  "lat": 1.5994,
+  "lon": 103.8209,
+  "state": "Johor"
+ },
+ "Tn154": {
+  "name": "Tanjong Karang",
+  "lat": 3.4249,
+  "lon": 101.1765,
+  "state": "Selangor"
+ },
+ "Tn155": {
+  "name": "Gombak (Taman Perwira )",
+  "lat": 3.24,
+  "lon": 101.68,
+  "state": "Selangor"
+ },
+ "Tn156": {
+  "name": "Bandar Baru Seri Manjung",
+  "lat": 4.23,
+  "lon": 100.66,
+  "state": "Perak"
+ },
+ "Tn157": {
+  "name": "Kuala Kedah",
+  "lat": 6.1072,
+  "lon": 100.2935,
+  "state": "Kedah"
+ },
+ "Tn158": {
+  "name": "Sri Gombak",
+  "lat": 3.2444,
+  "lon": 101.7044,
+  "state": "Selangor"
+ },
+ "Tn159": {
+  "name": "Skudai",
+  "lat": 1.537,
+  "lon": 103.6621,
+  "state": "Johor"
+ },
+ "Tn160": {
+  "name": "Bayan Baru",
+  "lat": 5.3249,
+  "lon": 100.2852,
+  "state": "Penang"
+ },
+ "Tn161": {
+  "name": "Gurun",
+  "lat": 5.8202,
+  "lon": 100.4772,
+  "state": "Kedah"
+ },
+ "Tn162": {
+  "name": "Serendah",
+  "lat": 3.3651,
+  "lon": 101.6033,
+  "state": "Selangor"
+ },
+ "Tn163": {
+  "name": "Sungai Udang",
+  "lat": 2.2841,
+  "lon": 102.1339,
+  "state": "Malacca"
+ },
+ "Tn164": {
+  "name": "Serdang",
+  "lat": 3.0341,
+  "lon": 101.7056,
+  "state": "Selangor"
+ },
+ "Tn165": {
+  "name": "Batu Berendam",
+  "lat": 2.2507,
+  "lon": 102.2542,
+  "state": "Malacca"
+ },
+ "Tn166": {
+  "name": "Telok Panglima Garang",
+  "lat": 2.9185,
+  "lon": 101.4737,
+  "state": "Selangor"
+ },
+ "Tn167": {
+  "name": "Sungai Dua - Sungai Nibong",
+  "lat": 5.36,
+  "lon": 100.3,
+  "state": "Penang"
+ },
+ "Tn168": {
+  "name": "Bahau",
+  "lat": 2.81,
+  "lon": 102.4004,
+  "state": "Negeri Sembilan"
+ },
+ "Tn169": {
+  "name": "Sabak",
+  "lat": 6.1731,
+  "lon": 102.3197,
+  "state": "Kelantan"
+ },
+ "Tn170": {
+  "name": "Gelugor",
+  "lat": 5.3684,
+  "lon": 100.31,
+  "state": "Penang"
+ },
+ "Tn171": {
+  "name": "Puchong",
+  "lat": 3.0342,
+  "lon": 101.617,
+  "state": "Selangor"
+ },
+ "Tn172": {
+  "name": "Tanjung Bungah",
+  "lat": 5.4648,
+  "lon": 100.2845,
+  "state": "Penang"
+ },
+ "Tn173": {
+  "name": "Tanjung Tokong",
+  "lat": 5.451,
+  "lon": 100.3056,
+  "state": "Penang"
+ },
+ "Tn174": {
+  "name": "Bandar Utama",
+  "lat": 3.1432,
+  "lon": 101.6114,
+  "state": "Selangor"
+ },
+ "Tn175": {
+  "name": "Sungai Ara",
+  "lat": 5.3207,
+  "lon": 100.2682,
+  "state": "Penang"
+ },
+ "Tn176": {
+  "name": "Juru",
+  "lat": 5.3431,
+  "lon": 100.4363,
+  "state": "Penang"
+ },
+ "Tn177": {
+  "name": "Jawi",
+  "lat": 5.1988,
+  "lon": 100.4919,
+  "state": "Penang"
+ },
+ "Tn178": {
+  "name": "Sungai Besar",
+  "lat": 3.6777,
+  "lon": 100.988,
+  "state": "Selangor"
+ },
+ "Tn179": {
+  "name": "Kangar",
+  "lat": 6.4389,
+  "lon": 100.1945,
+  "state": "Perlis"
+ },
+ "Tn180": {
+  "name": "Ulu Kelang",
+  "lat": 3.2202,
+  "lon": 101.777,
+  "state": "Selangor"
+ },
+ "Tn181": {
+  "name": "Klang",
+  "lat": 3.0448,
+  "lon": 101.4447,
+  "state": "Selangor"
+ },
+ "Tn182": {
+  "name": "Marang",
+  "lat": 5.1667,
+  "lon": 103.1667,
+  "state": "Terengganu"
+ },
+ "Tn183": {
+  "name": "Kuala Berang",
+  "lat": 5.0743,
+  "lon": 103.0172,
+  "state": "Terengganu"
+ },
+ "Tn185": {
+  "name": "Bandar Al-Muktafi Billah Shah",
+  "lat": 4.6158,
+  "lon": 103.2076,
+  "state": "Terengganu"
+ },
+ "Tn186": {
+  "name": "Cukai",
+  "lat": 4.2193,
+  "lon": 103.4225,
+  "state": "Terengganu"
+ },
+ "Tn187": {
+  "name": "Kuching",
+  "lat": 1.5598,
+  "lon": 110.3454,
+  "state": "Sarawak"
+ },
+ "Tn188": {
+  "name": "Sri Aman",
+  "lat": 1.2088,
+  "lon": 111.408,
+  "state": "Sarawak"
+ },
+ "Tn189": {
+  "name": "Sarikei",
+  "lat": 2.0508,
+  "lon": 111.4176,
+  "state": "Sarawak"
+ },
+ "Tn190": {
+  "name": "Sibu",
+  "lat": 2.2906,
+  "lon": 111.8256,
+  "state": "Sarawak"
+ },
+ "Tn191": {
+  "name": "Mukah",
+  "lat": 2.8119,
+  "lon": 112.2912,
+  "state": "Sarawak"
+ },
+ "Tn192": {
+  "name": "Kapit",
+  "lat": 2.0139,
+  "lon": 112.9357,
+  "state": "Sarawak"
+ },
+ "Tn193": {
+  "name": "Bintulu",
+  "lat": 3.1874,
+  "lon": 113.0473,
+  "state": "Sarawak"
+ },
+ "Tn194": {
+  "name": "Miri",
+  "lat": 4.394,
+  "lon": 113.988,
+  "state": "Sarawak"
+ },
+ "Tn195": {
+  "name": "Limbang",
+  "lat": 4.352,
+  "lon": 115.0602,
+  "state": "Sarawak"
+ },
+ "Tn196": {
+  "name": "Kota Kinabalu",
+  "lat": 5.978,
+  "lon": 116.0729,
+  "state": "Sabah"
+ },
+ "Tn197": {
+  "name": "Keningau",
+  "lat": 5.2179,
+  "lon": 116.2463,
+  "state": "Sabah"
+ },
+ "Tn198": {
+  "name": "Tuaran",
+  "lat": 6.0659,
+  "lon": 116.3198,
+  "state": "Sabah"
+ },
+ "Tn199": {
+  "name": "Tawau",
+  "lat": 4.2435,
+  "lon": 117.8853,
+  "state": "Sabah"
+ },
+ "Tn200": {
+  "name": "Sandakan",
+  "lat": 5.8391,
+  "lon": 118.1159,
+  "state": "Sabah"
+ },
+ "Tn201": {
+  "name": "Lahad Datu",
+  "lat": 5.1155,
+  "lon": 118.4306,
+  "state": "Sabah"
+ },
+ "Ds001": {
+  "name": "Langkawi",
+  "lat": 6.3306,
+  "lon": 99.8497,
+  "state": "Kedah"
+ },
+ "Ds002": {
+  "name": "Perlis",
+  "lat": 6.4643,
+  "lon": 100.3486,
+  "state": "Perlis"
+ },
+ "Ds003": {
+  "name": "Kubang Pasu",
+  "lat": 6.3356,
+  "lon": 100.3723,
+  "state": "Kedah"
+ },
+ "Ds004": {
+  "name": "Kota Setar",
+  "lat": 6.1226,
+  "lon": 100.369,
+  "state": "Kedah"
+ },
+ "Ds005": {
+  "name": "Pokok Sena",
+  "lat": 6.1731,
+  "lon": 100.5204,
+  "state": "Kedah"
+ },
+ "Ds006": {
+  "name": "Padang Terap",
+  "lat": 6.2567,
+  "lon": 100.6646,
+  "state": "Kedah"
+ },
+ "Ds007": {
+  "name": "Yan",
+  "lat": 5.7947,
+  "lon": 100.3719,
+  "state": "Kedah"
+ },
+ "Ds008": {
+  "name": "Pendang",
+  "lat": 5.9925,
+  "lon": 100.4776,
+  "state": "Kedah"
+ },
+ "Ds009": {
+  "name": "Kuala Muda",
+  "lat": 5.5602,
+  "lon": 100.518,
+  "state": "Kedah"
+ },
+ "Ds010": {
+  "name": "Sik",
+  "lat": 5.8203,
+  "lon": 100.7434,
+  "state": "Kedah"
+ },
+ "Ds011": {
+  "name": "Barat Daya",
+  "lat": 5.33,
+  "lon": 100.21,
+  "state": "Penang"
+ },
+ "Ds012": {
+  "name": "Timur Laut",
+  "lat": 5.41,
+  "lon": 100.31,
+  "state": "Penang"
+ },
+ "Ds013": {
+  "name": "Seberang Perai Utara",
+  "lat": 5.3948,
+  "lon": 100.3653,
+  "state": "Penang"
+ },
+ "Ds014": {
+  "name": "Seberang Perai Tengah",
+  "lat": 5.3072,
+  "lon": 100.4545,
+  "state": "Penang"
+ },
+ "Ds015": {
+  "name": "Baling",
+  "lat": 5.676,
+  "lon": 100.9162,
+  "state": "Kedah"
+ },
+ "Ds016": {
+  "name": "Kulim",
+  "lat": 5.3559,
+  "lon": 100.538,
+  "state": "Kedah"
+ },
+ "Ds017": {
+  "name": "Seberang Perai Selatan",
+  "lat": 5.2615,
+  "lon": 100.4364,
+  "state": "Penang"
+ },
+ "Ds018": {
+  "name": "Bandar Baharu",
+  "lat": 5.1059,
+  "lon": 100.5608,
+  "state": "Kedah"
+ },
+ "Ds019": {
+  "name": "Kerian",
+  "lat": 5.1092,
+  "lon": 100.4779,
+  "state": "Perak"
+ },
+ "Ds020": {
+  "name": "Larut, Matang Dan Selama",
+  "lat": 4.8167,
+  "lon": 100.6644,
+  "state": "Perak"
+ },
+ "Ds021": {
+  "name": "Hulu Perak",
+  "lat": 5.448,
+  "lon": 101.2971,
+  "state": "Perak"
+ },
+ "Ds022": {
+  "name": "Tumpat",
+  "lat": 6.2002,
+  "lon": 102.1707,
+  "state": "Kelantan"
+ },
+ "Ds023": {
+  "name": "Pasir Mas",
+  "lat": 6.0081,
+  "lon": 102.0925,
+  "state": "Kelantan"
+ },
+ "Ds024": {
+  "name": "Kota Bharu",
+  "lat": 6.1248,
+  "lon": 102.2378,
+  "state": "Kelantan"
+ },
+ "Ds025": {
+  "name": "Jeli",
+  "lat": 5.6219,
+  "lon": 101.6667,
+  "state": "Kelantan"
+ },
+ "Ds026": {
+  "name": "Kuala Kangsar",
+  "lat": 4.9138,
+  "lon": 100.6544,
+  "state": "Perak"
+ },
+ "Ds027": {
+  "name": "Tanah Merah",
+  "lat": 5.7663,
+  "lon": 102.0341,
+  "state": "Kelantan"
+ },
+ "Ds028": {
+  "name": "Bachok",
+  "lat": 6.0562,
+  "lon": 102.391,
+  "state": "Kelantan"
+ },
+ "Ds029": {
+  "name": "Manjung",
+  "lat": 4.3348,
+  "lon": 100.6343,
+  "state": "Perak"
+ },
+ "Ds030": {
+  "name": "Machang",
+  "lat": 5.7677,
+  "lon": 102.2381,
+  "state": "Kelantan"
+ },
+ "Ds031": {
+  "name": "Pasir Puteh",
+  "lat": 5.8346,
+  "lon": 102.383,
+  "state": "Kelantan"
+ },
+ "Ds032": {
+  "name": "Kinta",
+  "lat": 4.6066,
+  "lon": 101.0906,
+  "state": "Perak"
+ },
+ "Ds033": {
+  "name": "Perak Tengah",
+  "lat": 4.1184,
+  "lon": 101.021,
+  "state": "Perak"
+ },
+ "Ds034": {
+  "name": "Kuala Krai",
+  "lat": 5.5312,
+  "lon": 102.1994,
+  "state": "Kelantan"
+ },
+ "Ds035": {
+  "name": "Kampar",
+  "lat": 4.3075,
+  "lon": 101.1533,
+  "state": "Perak"
+ },
+ "Ds036": {
+  "name": "Bagan Datuk",
+  "lat": 3.9167,
+  "lon": 100.9167,
+  "state": "Perak"
+ },
+ "Ds037": {
+  "name": "Besut",
+  "lat": 5.8307,
+  "lon": 102.5583,
+  "state": "Terengganu"
+ },
+ "Ds038": {
+  "name": "Tanah Tinggi Cameron",
+  "lat": 4.4711,
+  "lon": 101.3752,
+  "state": "Pahang"
+ },
+ "Ds039": {
+  "name": "Gua Musang",
+  "lat": 4.9002,
+  "lon": 101.7865,
+  "state": "Kelantan"
+ },
+ "Ds040": {
+  "name": "Hilir Perak",
+  "lat": 4.0727,
+  "lon": 101.1607,
+  "state": "Perak"
+ },
+ "Ds041": {
+  "name": "Batang Padang",
+  "lat": 4.0402,
+  "lon": 101.1112,
+  "state": "Perak"
+ },
+ "Ds042": {
+  "name": "Setiu",
+  "lat": 5.5501,
+  "lon": 102.7355,
+  "state": "Terengganu"
+ },
+ "Ds043": {
+  "name": "Sabak Bernam",
+  "lat": 3.676,
+  "lon": 100.9905,
+  "state": "Selangor"
+ },
+ "Ds044": {
+  "name": "Lipis",
+  "lat": 4.1798,
+  "lon": 102.0547,
+  "state": "Pahang"
+ },
+ "Ds045": {
+  "name": "Muallim",
+  "lat": 3.8333,
+  "lon": 101.5,
+  "state": "Perak"
+ },
+ "Ds046": {
+  "name": "Kuala Nerus",
+  "lat": 5.3957,
+  "lon": 103.0615,
+  "state": "Terengganu"
+ },
+ "Ds049": {
+  "name": "Kuala Selangor",
+  "lat": 3.3418,
+  "lon": 101.2455,
+  "state": "Selangor"
+ },
+ "Ds050": {
+  "name": "Raub",
+  "lat": 3.7147,
+  "lon": 101.7347,
+  "state": "Pahang"
+ },
+ "Ds051": {
+  "name": "Hulu Selangor",
+  "lat": 3.5625,
+  "lon": 101.6604,
+  "state": "Selangor"
+ },
+ "Ds052": {
+  "name": "Marang",
+  "lat": 5.2145,
+  "lon": 103.2006,
+  "state": "Terengganu"
+ },
+ "Ds053": {
+  "name": "Jerantut",
+  "lat": 3.9391,
+  "lon": 102.3607,
+  "state": "Pahang"
+ },
+ "Ds054": {
+  "name": "Klang",
+  "lat": 3.0448,
+  "lon": 101.4447,
+  "state": "Selangor"
+ },
+ "Ds055": {
+  "name": "Gombak",
+  "lat": 3.3,
+  "lon": 101.7,
+  "state": "Selangor"
+ },
+ "Ds057": {
+  "name": "Petaling",
+  "lat": 3.1887,
+  "lon": 101.5894,
+  "state": "Selangor"
+ },
+ "Ds058": {
+  "name": "Kuala Lumpur",
+  "lat": 3.1408,
+  "lon": 101.6939,
+  "state": "Kuala Lumpur"
+ },
+ "Ds059": {
+  "name": "Bentong",
+  "lat": 3.5272,
+  "lon": 101.9072,
+  "state": "Pahang"
+ },
+ "Ds060": {
+  "name": "Kuala Langat",
+  "lat": 2.8049,
+  "lon": 101.4936,
+  "state": "Selangor"
+ },
+ "Ds061": {
+  "name": "Temerloh",
+  "lat": 3.485,
+  "lon": 102.3487,
+  "state": "Pahang"
+ },
+ "Ds062": {
+  "name": "Putrajaya",
+  "lat": 2.918,
+  "lon": 101.6841,
+  "state": "Putrajaya"
+ },
+ "Ds063": {
+  "name": "Hulu Langat",
+  "lat": 2.9566,
+  "lon": 101.7569,
+  "state": "Selangor"
+ },
+ "Ds064": {
+  "name": "Sepang",
+  "lat": 2.8009,
+  "lon": 101.7094,
+  "state": "Selangor"
+ },
+ "Ds065": {
+  "name": "Kemaman",
+  "lat": 4.2346,
+  "lon": 103.4236,
+  "state": "Terengganu"
+ },
+ "Ds066": {
+  "name": "Maran",
+  "lat": 3.5832,
+  "lon": 102.7795,
+  "state": "Pahang"
+ },
+ "Ds068": {
+  "name": "Seremban",
+  "lat": 2.7443,
+  "lon": 101.9264,
+  "state": "Negeri Sembilan"
+ },
+ "Ds069": {
+  "name": "Kuantan",
+  "lat": 3.87,
+  "lon": 103.237,
+  "state": "Pahang"
+ },
+ "Ds071": {
+  "name": "Bera",
+  "lat": 3.2727,
+  "lon": 102.4523,
+  "state": "Pahang"
+ },
+ "Ds073": {
+  "name": "Rembau",
+  "lat": 2.5579,
+  "lon": 102.1082,
+  "state": "Negeri Sembilan"
+ },
+ "Ds074": {
+  "name": "Jempol",
+  "lat": 2.8031,
+  "lon": 102.3555,
+  "state": "Negeri Sembilan"
+ },
+ "Ds075": {
+  "name": "Alor Gajah",
+  "lat": 2.3796,
+  "lon": 102.3373,
+  "state": "Malacca"
+ },
+ "Ds076": {
+  "name": "Pekan",
+  "lat": 3.3782,
+  "lon": 103.2096,
+  "state": "Pahang"
+ },
+ "Ds078": {
+  "name": "Melaka Tengah",
+  "lat": 2.1344,
+  "lon": 102.4919,
+  "state": "Malacca"
+ },
+ "Ds079": {
+  "name": "Jasin",
+  "lat": 2.3058,
+  "lon": 102.4223,
+  "state": "Malacca"
+ },
+ "Ds080": {
+  "name": "Rompin",
+  "lat": 2.7991,
+  "lon": 103.4722,
+  "state": "Pahang"
+ },
+ "Ds081": {
+  "name": "Tangkak",
+  "lat": 2.3735,
+  "lon": 102.6175,
+  "state": "Johor"
+ },
+ "Ds082": {
+  "name": "Segamat",
+  "lat": 2.4922,
+  "lon": 102.8449,
+  "state": "Johor"
+ },
+ "Ds085": {
+  "name": "Kluang",
+  "lat": 2.0323,
+  "lon": 103.3191,
+  "state": "Johor"
+ },
+ "Ds086": {
+  "name": "Mersing",
+  "lat": 2.4335,
+  "lon": 103.8417,
+  "state": "Johor"
+ },
+ "Ds088": {
+  "name": "Kulai",
+  "lat": 1.6667,
+  "lon": 103.6,
+  "state": "Johor"
+ },
+ "Ds090": {
+  "name": "Johor Bahru",
+  "lat": 1.5663,
+  "lon": 103.6011,
+  "state": "Johor"
+ },
+ "Ds092": {
+  "name": "Selama",
+  "lat": 5.0146,
+  "lon": 100.5395,
+  "state": "Perak"
+ },
+ "Dv519": {
+  "name": "Labuan",
+  "lat": 5.3024,
+  "lon": 115.2506,
+  "state": "Labuan"
+ },
+ "Rc001": {
+  "name": "Langkawi",
+  "lat": 6.37,
+  "lon": 99.7929,
+  "state": "Kedah"
+ },
+ "Rc002": {
+  "name": "Taman Negara Pulau Pinang",
+  "lat": 5.4504,
+  "lon": 100.1977,
+  "state": "Penang"
+ },
+ "Rc003": {
+  "name": "Batu Feringgi",
+  "lat": 5.4709,
+  "lon": 100.2486,
+  "state": "Penang"
+ },
+ "Rc004": {
+  "name": "Bukit Bendera",
+  "lat": 5.4247,
+  "lon": 100.2689,
+  "state": "Penang"
+ },
+ "Rc005": {
+  "name": "Pulau Pangkor",
+  "lat": 4.2274,
+  "lon": 100.5591,
+  "state": "Perak"
+ },
+ "Rc006": {
+  "name": "Lumut",
+  "lat": 4.2246,
+  "lon": 100.6212,
+  "state": "Perak"
+ },
+ "Rc007": {
+  "name": "Pulau Perhentian",
+  "lat": 5.9029,
+  "lon": 102.7557,
+  "state": "Terengganu"
+ },
+ "Rc008": {
+  "name": "Cameron Highland",
+  "lat": 4.4706,
+  "lon": 101.3779,
+  "state": "Pahang"
+ },
+ "Rc009": {
+  "name": "Pulau Redang",
+  "lat": 5.7834,
+  "lon": 103.0141,
+  "state": "Terengganu"
+ },
+ "Rc010": {
+  "name": "Taman Negara Kelantan",
+  "lat": 4.7718,
+  "lon": 102.4545,
+  "state": "Kelantan"
+ },
+ "Rc011": {
+  "name": "Tasik Kenyir",
+  "lat": 4.9956,
+  "lon": 102.6372,
+  "state": "Terengganu"
+ },
+ "Rc012": {
+  "name": "Taman Negara Terengganu",
+  "lat": 4.8112,
+  "lon": 102.8014,
+  "state": "Terengganu"
+ },
+ "Rc013": {
+  "name": "Taman Negara",
+  "lat": 4.38,
+  "lon": 102.4,
+  "state": "Pahang"
+ },
+ "Rc014": {
+  "name": "Bukit Fraser",
+  "lat": 3.7119,
+  "lon": 101.7362,
+  "state": "Pahang"
+ },
+ "Rc015": {
+  "name": "Pulau Kapas",
+  "lat": 5.221,
+  "lon": 103.2652,
+  "state": "Terengganu"
+ },
+ "Rc016": {
+  "name": "Tanah Tinggi Genting",
+  "lat": 3.4237,
+  "lon": 101.7934,
+  "state": "Pahang"
+ },
+ "Rc017": {
+  "name": "Bukit Tinggi",
+  "lat": 3.35,
+  "lon": 101.83,
+  "state": "Pahang"
+ },
+ "Rc018": {
+  "name": "Pusat Konservasi Gajah Kebangsaan",
+  "lat": 3.51,
+  "lon": 102.2,
+  "state": "Pahang"
+ },
+ "Rc019": {
+  "name": "Tasik Bera",
+  "lat": 3.08,
+  "lon": 102.62,
+  "state": "Pahang"
+ },
+ "Rc020": {
+  "name": "Tanjung Jara",
+  "lat": 4.8104,
+  "lon": 103.4163,
+  "state": "Terengganu"
+ },
+ "Rc021": {
+  "name": "Paya Indah Wetlands",
+  "lat": 2.8598,
+  "lon": 101.6319,
+  "state": "Selangor"
+ },
+ "Rc022": {
+  "name": "Kijal",
+  "lat": 4.335,
+  "lon": 103.4812,
+  "state": "Terengganu"
+ },
+ "Rc023": {
+  "name": "Cherating",
+  "lat": 4.1265,
+  "lon": 103.3925,
+  "state": "Pahang"
+ },
+ "Rc025": {
+  "name": "Pulau Sibu",
+  "lat": 2.2149,
+  "lon": 104.0745,
+  "state": "Johor"
+ },
+ "Rc026": {
+  "name": "Desaru",
+  "lat": 1.541,
+  "lon": 104.2643,
+  "state": "Johor"
+ },
+ "Rc511": {
+  "name": "Taman Tunku Abdul Rahman",
+  "lat": 5.9707,
+  "lon": 116.0743,
+  "state": "Sabah"
+ },
+ "Tn023": {
+  "name": "Serdang",
+  "lat": 5.21,
+  "lon": 100.61,
+  "state": "Kedah"
+ },
+ "Tn184": {
+  "name": "Kampong Raja",
+  "lat": 5.8,
+  "lon": 102.57,
+  "state": "Terengganu"
+ },
+ "Ds047": {
+  "name": "Hulu Terengganu",
+  "lat": 5.07,
+  "lon": 103.01,
+  "state": "Terengganu"
+ },
+ "Ds048": {
+  "name": "Kuala Terengganu",
+  "lat": 5.33,
+  "lon": 103.14,
+  "state": "Terengganu"
+ },
+ "Ds056": {
+  "name": "Dungun",
+  "lat": 4.76,
+  "lon": 103.41,
+  "state": "Terengganu"
+ },
+ "Ds067": {
+  "name": "Jelebu",
+  "lat": 2.94,
+  "lon": 102.07,
+  "state": "Negeri Sembilan"
+ },
+ "Ds070": {
+  "name": "Port Dickson",
+  "lat": 2.52,
+  "lon": 101.8,
+  "state": "Negeri Sembilan"
+ },
+ "Ds072": {
+  "name": "Kuala Pilah",
+  "lat": 2.74,
+  "lon": 102.25,
+  "state": "Negeri Sembilan"
+ },
+ "Ds077": {
+  "name": "Tampin",
+  "lat": 2.47,
+  "lon": 102.23,
+  "state": "Negeri Sembilan"
+ },
+ "Ds083": {
+  "name": "Muar",
+  "lat": 2.04,
+  "lon": 102.57,
+  "state": "Johor"
+ },
+ "Ds084": {
+  "name": "Batu Pahat",
+  "lat": 1.85,
+  "lon": 102.93,
+  "state": "Johor"
+ },
+ "Ds087": {
+  "name": "Pontian",
+  "lat": 1.49,
+  "lon": 103.39,
+  "state": "Johor"
+ },
+ "Ds089": {
+  "name": "Kota Tinggi",
+  "lat": 1.73,
+  "lon": 103.9,
+  "state": "Johor"
+ },
+ "Rc024": {
+  "name": "Pulau Tioman",
+  "lat": 2.79,
+  "lon": 104.17,
+  "state": "Pahang"
+ }
+}

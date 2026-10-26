@@ -1,0 +1,24 @@
+{
+  "name": "weatherflood-detection",
+  "version": "0.1.0",
+  "description": "Malaysia live weather dashboard (MET Malaysia via data.gov.my): forecast, warnings, earthquakes",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "geocode": "node scripts/geocode-locations.mjs"
+  },
+  "dependencies": {
+    "leaflet": "1.9.4",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "react-leaflet": "4.2.1",
+    "recharts": "2.15.4"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "4.3.4",
+    "vite": "5.4.19"
+  }
+}
