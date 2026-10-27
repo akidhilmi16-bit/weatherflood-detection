@@ -28,6 +28,7 @@ export const THEMES = {
     series1: '#2a78d6',
     temp: '#eb6834', // categorical slot 2, used for the temperature series
     series3: '#1baf7a', // categorical slot 3
+    series4: '#eda100', // categorical slot 4
     tempLow: '#2a78d6',
     // Earthquake depth, ordinal: shallow -> deep.
     depth: ['#86b6ef', '#2a78d6', '#0d366b'],
@@ -53,6 +54,7 @@ export const THEMES = {
     series1: '#3987e5',
     temp: '#d95926',
     series3: '#199e70',
+    series4: '#c98500',
     tempLow: '#3987e5',
     depth: ['#b7d3f6', '#3987e5', '#184f95'],
     land: '#262624',

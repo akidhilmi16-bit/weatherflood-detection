@@ -1553,6 +1553,128 @@ button {
   color: var(--muted);
 }
 
+/* ---------- River stations ---------- */
+
+.feed-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  color: var(--ink2);
+}
+
+.feed-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--muted);
+}
+
+.feed-chip.is-live .feed-dot {
+  background: var(--good);
+}
+
+.feed-chip.is-stale .feed-dot {
+  background: var(--serious);
+}
+
+.river-stale {
+  margin-bottom: 14px;
+  padding: 11px 14px;
+  border-radius: 11px;
+  border-left: 4px solid var(--serious);
+  background: color-mix(in srgb, var(--serious) 10%, transparent);
+  font-size: 12.5px;
+  line-height: 1.55;
+  color: var(--ink2);
+}
+
+.river-stale strong {
+  color: var(--ink);
+}
+
+.river-counts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.river-count {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 12px 6px 6px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--page);
+}
+
+.river-count strong {
+  font-family: var(--display);
+  font-size: 16px;
+}
+
+.river-count .muted {
+  color: var(--muted);
+  font-size: 12px;
+  padding-left: 6px;
+}
+
+.river-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.river-table th {
+  text-align: left;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  padding: 6px 10px;
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+
+.river-table td {
+  padding: 9px 10px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: middle;
+}
+
+.river-table td small {
+  display: block;
+  color: var(--muted);
+  font-size: 11.5px;
+  margin-top: 2px;
+}
+
+.river-table tr.is-stale td {
+  color: var(--ink2);
+}
+
+.river-gauge {
+  display: block;
+  width: 140px;
+  height: 6px;
+  border-radius: 3px;
+  background: var(--grid);
+  overflow: hidden;
+}
+
+.river-gauge span {
+  display: block;
+  height: 100%;
+  border-radius: 3px;
+}
+
 /* ---------- Responsive ---------- */
 
 @media (max-width: 1180px) {

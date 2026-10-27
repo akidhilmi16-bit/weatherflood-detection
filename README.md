@@ -9,7 +9,7 @@ Maps and charts of the live data, plus a rule-based **flood-risk index** (Danger
 | Forecast | `GET /weather/forecast/` | 7-day outlook for 440 locations (states, districts, towns, divisions, recreation areas): rain-intensity map, 7-day outlook chart, state temperature ranges, 7-day matrix, per-location detail |
 | Warnings | `GET /weather/warning/` | Bulletins in force (thunderstorm, continuous rain, strong winds / rough seas…), affected states and districts on a map, severity, time left |
 | Earthquakes | `GET /weather/warning/earthquake/` | Regional events on a map (size = magnitude, colour = depth), magnitude timeline and distribution, event log, filters |
-| Danger Zone | forecast + warnings | Flood-risk index 0-100 for every district / division: gauge, danger map, ranked zones, score breakdown, 7-day trajectory, risk by state |
+| Danger Zone | forecast + warnings + `GET /flood-warning/` | Flood-risk index 0-100 for every district / division: gauge, danger map, ranked zones, score breakdown, 7-day trajectory, risk by state. JPS river-level stations on the map and in a stations table |
 
 ## Architecture
 
@@ -36,7 +36,8 @@ src/
   lib/conditions.js       Malay forecast phrase -> rain level 0-4 (+ English)
   lib/warnings.js         parse affected states/districts out of warning text
   lib/quakes.js           depth classes, distance parsing
-  lib/floodRisk.js        flood-risk index (rain build-up + monsoon + warnings)
+  lib/floodRisk.js        flood-risk index (rain build-up + monsoon + warnings + rivers)
+  lib/rivers.js           JPS river stations: status, thresholds, freshness
   lib/theme.jsx           light/dark palettes (validated colour ramps)
   data/locations.json     coordinates for forecast locations (generated)
 public/data/malaysia_states.geojson
@@ -55,6 +56,9 @@ scripts/geocode-locations.mjs
   "over the states of …" part. Marine warnings ("waters of …") name sea areas, so
   they are listed but not mapped.
 - **Warnings have no history.** The endpoint returns only current bulletins.
+- **The JPS river feed (`/flood-warning/`) can go stale.** As of Oct 2026 its newest
+  reading is 23 Feb 2024. `lib/rivers.js` marks each reading's age; only readings
+  under 6 hours old count in the flood score, so old data is shown but never scored.
 
 ## Run locally
 
@@ -91,12 +95,15 @@ Indicative only, not an official warning. Per district / division and day:
    Johor, Sabah and Sarawak.
 4. **Warnings**: a MET land warning naming the zone adds 15 / 28 / 42 points
    (alert / severe / danger); thunderstorm alerts count at half.
+5. **Rivers**: a fresh (< 6 h) JPS reading at alert / warning / danger adds
+   12 / 24 / 38 points (+6 if rising) to the station's district today, fading
+   40% a day.
 
 Levels: Low 0+, Moderate 25+, High 50+, Severe 75+. Weights live in `lib/floodRisk.js`.
 
 ## Roadmap
 
-- Add JPS river levels and rain-gauge totals (publicinfobanjir.water.gov.my).
+- Live river levels if the data.gov.my JPS feed stays paused (publicinfobanjir.water.gov.my).
 - Keep warning and forecast history (the API only serves current data), then
   train a model on past flood events.
 

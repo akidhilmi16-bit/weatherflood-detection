@@ -1,8 +1,9 @@
 // Flood-risk index (v2, rule-based). Not an official warning: it turns MET's
-// 7-day forecast and the warnings in force into a 0-100 score per district /
-// division so the places where rain keeps piling up stand out.
+// 7-day forecast, the warnings in force and fresh JPS river levels into a
+// 0-100 score per district / division so the places where rain keeps piling
+// up stand out.
 //
-//   score = rain build-up x monsoon factor + official warning points
+//   score = rain build-up x monsoon factor + official warning points + river points
 //
 // Rain build-up: each day's rain load (intensity + how long it lasts) is added
 // to what is left of the previous days (DECAY), because floods follow rain
@@ -33,6 +34,12 @@ export const RAIN_SCALE = 6;
 export const MONSOON = { months: [11, 12, 1, 2, 3], states: ['Kelantan', 'Terengganu', 'Pahang', 'Johor', 'Sabah', 'Sarawak'], factor: 1.2 };
 
 export const WARNING_POINTS = { warning: 15, serious: 28, critical: 42 };
+
+// A fresh JPS river reading above normal adds points to its nearest zone today,
+// fading by RIVER_FADE per day after (rivers take days to recede).
+export const RIVER_POINTS = { alert: 12, warning: 24, danger: 38 };
+export const RIVER_RISING_BONUS = 6;
+export const RIVER_FADE = 0.6;
 // Continuous rain is the flood warning; thunderstorm alerts last only hours.
 const warningKind = (w) => {
   const t = `${w.warning_issue?.title_en ?? ''} ${w.heading_en ?? ''}`.toLowerCase();
@@ -64,7 +71,27 @@ function warningHits(w, zone) {
   return !named.length || named.some((p) => p.id === zone.id);
 }
 
-export function buildRisk(rows, warnings = []) {
+// Fresh river readings above normal, grouped by zone: the zone with the
+// station's district name, else the nearest zone in the same state.
+function riversByZone(zones, stations) {
+  const out = new Map();
+  for (const s of stations) {
+    if (!s.fresh || s.level.rank < 1) continue;
+    let best = zones.find((z) => z.state === s.state && z.name.toLowerCase() === s.district?.toLowerCase()) ?? null;
+    let bestD = Infinity;
+    for (const z of best ? [] : zones) {
+      if (z.state !== s.state || !z.point) continue;
+      const d = (z.point[0] - s.point[0]) ** 2 + (z.point[1] - s.point[1]) ** 2;
+      if (d < bestD) [bestD, best] = [d, z];
+    }
+    if (!best) continue;
+    if (!out.has(best.id)) out.set(best.id, []);
+    out.get(best.id).push(s);
+  }
+  return out;
+}
+
+export function buildRisk(rows, warnings = [], stations = []) {
   const dates = [...new Set(rows.map((r) => r.date))].sort();
   const zones = new Map();
   // Many divisions share their name and seat with a district (Kuching, Labuan…):
@@ -80,12 +107,16 @@ export function buildRisk(rows, warnings = []) {
   }
 
   const live = warnings.filter((w) => (w.status === 'active' || w.status === 'upcoming') && w.areas.states.length);
+  const rivers = riversByZone([...zones.values()], stations);
 
   for (const z of zones.values()) {
+    const zoneRivers = rivers.get(z.id) ?? [];
+    const riverBase = Math.max(0, ...zoneRivers.map((s) => RIVER_POINTS[s.level.key] + (s.trend === 'RISING' ? RIVER_RISING_BONUS : 0)));
     // The API has no past days, so assume yesterday's rain matched today's.
     let acc = null;
     let streak = 0;
-    z.days = dates.map((date) => {
+    z.rivers = zoneRivers;
+    z.days = dates.map((date, i) => {
       const row = z.rows[date];
       const { cond, load } = row ? dailyLoad(row) : { cond: parseCondition(''), load: 0 };
       acc = load + DECAY * (acc ?? load);
@@ -96,7 +127,8 @@ export function buildRisk(rows, warnings = []) {
       const monsoonPts = rainPts * (monsoon - 1);
       const hits = live.filter((w) => covers(w, date) && warningHits(w, z));
       const warnPts = Math.max(0, ...hits.map((w) => WARNING_POINTS[w.severity] * warningKind(w).factor));
-      const score = Math.min(100, Math.round(rainPts + monsoonPts + warnPts));
+      const riverPts = riverBase * RIVER_FADE ** i;
+      const score = Math.min(100, Math.round(rainPts + monsoonPts + warnPts + riverPts));
       return {
         date,
         score,
@@ -106,6 +138,8 @@ export function buildRisk(rows, warnings = []) {
         rainPts,
         monsoonPts,
         warnPts,
+        riverPts,
+        rivers: riverPts > 0.5 ? zoneRivers : [],
         streak,
         warnings: hits.map((w) => ({ key: w.key, title: w.warning_issue.title_en, kind: warningKind(w).kind, severity: w.severity })),
         row,
@@ -124,5 +158,7 @@ export function drivers(day) {
   if (day.load > 0) out.push(day.cond.english);
   if (day.monsoonPts > 0.5) out.push('NE monsoon season');
   for (const w of day.warnings) out.push(`${w.kind} warning`);
+  const worst = day.rivers.reduce((a, s) => (!a || s.level.rank > a.level.rank ? s : a), null);
+  if (worst) out.push(`River ${worst.level.label.toLowerCase()}: ${worst.river ?? worst.name}`);
   return out;
 }

@@ -11,6 +11,12 @@ export const fmtDateTime = (d) =>
     ? d.toLocaleString('en-MY', { day: 'numeric', month: 'short', hour: 'numeric', minute: '2-digit', timeZone: MYT })
     : '—';
 
+/** Like fmtDateTime, but adds the year when it isn't this year. */
+export const fmtDateTimeYear = (d) =>
+  d && d.getFullYear() !== new Date().getFullYear()
+    ? d.toLocaleString('en-MY', { day: 'numeric', month: 'short', year: 'numeric', hour: 'numeric', minute: '2-digit', timeZone: MYT })
+    : fmtDateTime(d);
+
 export function timeAgo(d, now = Date.now()) {
   if (!d) return '—';
   const s = Math.round((now - d.getTime()) / 1000);

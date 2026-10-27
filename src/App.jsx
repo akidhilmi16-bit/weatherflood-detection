@@ -4,6 +4,7 @@ import { useTheme } from './lib/theme.jsx';
 import { enrichWarnings } from './lib/warnings.js';
 import { enrichQuakes } from './lib/quakes.js';
 import { buildRisk } from './lib/floodRisk.js';
+import { enrichStations } from './lib/rivers.js';
 import { timeAgo } from './lib/format.js';
 import ForecastPage from './pages/ForecastPage.jsx';
 import WarningsPage from './pages/WarningsPage.jsx';
@@ -28,6 +29,7 @@ export default function App() {
   const forecast = useEndpoint('forecast');
   const warningsRaw = useEndpoint('warnings');
   const quakesRaw = useEndpoint('earthquakes');
+  const riversRaw = useEndpoint('rivers');
 
   useEffect(() => {
     const onHash = () => setTab(tabFromHash());
@@ -37,7 +39,11 @@ export default function App() {
 
   const warnings = useMemo(() => (warningsRaw.data ? enrichWarnings(warningsRaw.data) : null), [warningsRaw.data]);
   const quakes = useMemo(() => (quakesRaw.data ? enrichQuakes(quakesRaw.data) : null), [quakesRaw.data]);
-  const risk = useMemo(() => (forecast.data ? buildRisk(forecast.data, warnings ?? []) : null), [forecast.data, warnings]);
+  const stations = useMemo(() => (riversRaw.data ? enrichStations(riversRaw.data) : null), [riversRaw.data]);
+  const risk = useMemo(
+    () => (forecast.data ? buildRisk(forecast.data, warnings ?? [], stations ?? []) : null),
+    [forecast.data, warnings, stations],
+  );
 
   const activeWarnings = warnings?.filter((w) => w.status === 'active' || w.status === 'upcoming').length ?? 0;
   const quakes24h = quakes?.filter((q) => Date.now() - q.time < 864e5).length ?? 0;
@@ -109,12 +115,12 @@ export default function App() {
         {tab === 'forecast' && <ForecastPage state={forecast} />}
         {tab === 'warnings' && <WarningsPage state={warningsRaw} warnings={warnings} />}
         {tab === 'earthquakes' && <EarthquakePage state={quakesRaw} quakes={quakes} />}
-        {tab === 'danger' && <DangerZonePage state={forecast} risk={risk} />}
+        {tab === 'danger' && <DangerZonePage state={forecast} risk={risk} stations={stations} riversState={riversRaw} />}
       </main>
 
       <footer className="footer">
         <span>
-          Data: <a href="https://developer.data.gov.my/realtime-api/weather" target="_blank" rel="noreferrer">MET Malaysia via data.gov.my</a> (CC BY 4.0)
+          Data: <a href="https://developer.data.gov.my/realtime-api/weather" target="_blank" rel="noreferrer">MET Malaysia</a> and JPS via data.gov.my (CC BY 4.0)
           · Basemap © Esri, HERE, Garmin, © OpenStreetMap contributors · Geocoding © OpenStreetMap (Nominatim)
         </span>
         <span className="footer-v2">v2 · live data · rule-based flood-risk index (indicative)</span>

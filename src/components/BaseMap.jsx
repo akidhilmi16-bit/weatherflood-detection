@@ -3,26 +3,32 @@ import { MapContainer, TileLayer, useMap } from 'react-leaflet';
 import { useTheme } from '../lib/theme.jsx';
 import { MALAYSIA_BOUNDS } from '../lib/geo.js';
 
+// Leaflet measures its container once; when the layout reflows (tab switch,
+// resize) it must be told, or tiles render grey. Until the user pans or zooms,
+// each reflow also re-fits the bounds so the map stays framed.
 function FitBounds({ bounds }) {
   const map = useMap();
   const key = JSON.stringify(bounds);
   useEffect(() => {
+    if (!key) return undefined;
     // No animation: a zoom still running when the tab unmounts throws in Leaflet.
-    if (key) map.fitBounds(JSON.parse(key), { padding: [12, 12], animate: false });
-  }, [map, key]);
-  return null;
-}
-
-// Leaflet measures its container once; when the layout reflows (tab switch,
-// resize) it must be told, or tiles render grey.
-function InvalidateOnResize() {
-  const map = useMap();
-  useEffect(() => {
+    const fit = () => map.fitBounds(JSON.parse(key), { padding: [12, 12], animate: false });
+    fit();
+    let touched = false;
     const el = map.getContainer();
-    const ro = new ResizeObserver(() => map.invalidateSize());
+    const touch = () => (touched = true);
+    const events = ['mousedown', 'wheel', 'touchstart', 'keydown'];
+    events.forEach((e) => el.addEventListener(e, touch, { passive: true }));
+    const ro = new ResizeObserver(() => {
+      map.invalidateSize();
+      if (!touched) fit();
+    });
     ro.observe(el);
-    return () => ro.disconnect();
-  }, [map]);
+    return () => {
+      ro.disconnect();
+      events.forEach((e) => el.removeEventListener(e, touch));
+    };
+  }, [map, key]);
   return null;
 }
 
@@ -42,7 +48,6 @@ export default function BaseMap({ bounds = MALAYSIA_BOUNDS, minZoom = 4, childre
       >
         <TileLayer key={theme.mode} url={theme.tiles} maxNativeZoom={16} />
         <FitBounds bounds={bounds} />
-        <InvalidateOnResize />
         {children}
       </MapContainer>
     </div>

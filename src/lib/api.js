@@ -1,14 +1,16 @@
-// data.gov.my Weather API client.
+// data.gov.my API client (Weather + Flood Warning).
 // The API allows 4 requests/minute per IP, so every response is cached in
 // localStorage and reused until it expires. If the API refuses (429) or is
 // down, we fall back to the last cached copy and flag it as stale.
 
-const BASE = 'https://api.data.gov.my/weather';
+const BASE = 'https://api.data.gov.my';
 
 export const ENDPOINTS = {
-  forecast: { path: '/forecast/', query: {}, ttl: 60 * 60 * 1000 },
-  warnings: { path: '/warning/', query: { sort: '-warning_issue__issued', limit: 200 }, ttl: 10 * 60 * 1000 },
-  earthquakes: { path: '/warning/earthquake/', query: { sort: '-utcdatetime', limit: 500 }, ttl: 10 * 60 * 1000 },
+  forecast: { path: '/weather/forecast/', query: {}, ttl: 60 * 60 * 1000 },
+  warnings: { path: '/weather/warning/', query: { sort: '-warning_issue__issued', limit: 200 }, ttl: 10 * 60 * 1000 },
+  earthquakes: { path: '/weather/warning/earthquake/', query: { sort: '-utcdatetime', limit: 500 }, ttl: 10 * 60 * 1000 },
+  // JPS river-level and rain-gauge stations
+  rivers: { path: '/flood-warning/', query: {}, ttl: 15 * 60 * 1000 },
 };
 
 const cacheKey = (name) => `wf-cache:${name}`;

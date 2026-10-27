@@ -15,9 +15,10 @@ import {
 } from 'recharts';
 import BaseMap from '../components/BaseMap.jsx';
 import { Card, ChartTooltip, Key, Loading, Segmented, StatTile, StatusChip } from '../components/ui.jsx';
-import { DECAY, LEVEL_WEIGHT, MONSOON, RISK_LEVELS, WARNING_POINTS, drivers } from '../lib/floodRisk.js';
+import { DECAY, LEVEL_WEIGHT, MONSOON, RISK_LEVELS, RIVER_FADE, RIVER_POINTS, WARNING_POINTS, drivers } from '../lib/floodRisk.js';
+import { FRESH_HOURS, RIVER_LEVELS, feedFreshness, fmtAge } from '../lib/rivers.js';
 import { loadStates } from '../lib/geo.js';
-import { fmtDate, fmtDay, todayMYT } from '../lib/format.js';
+import { fmtDate, fmtDateTimeYear, fmtDay, todayMYT } from '../lib/format.js';
 import { useTheme } from '../lib/theme.jsx';
 
 const BORNEO = ['Sabah', 'Sarawak', 'Labuan'];
@@ -32,16 +33,23 @@ const MIN_LEVELS = [
   { value: 50, label: 'High+' },
 ];
 const ALERT = RISK_LEVELS.slice(1); // moderate, high, severe
+const MAP_LAYERS = [
+  { value: 'zones', label: 'Risk zones' },
+  { value: 'rivers', label: 'River stations' },
+  { value: 'both', label: 'Both' },
+];
+const inRegion = (region, state) => region === 'all' || (region === 'east') === BORNEO.includes(state);
 
 const dayLabel = (d) => (d === todayMYT() ? 'Today' : fmtDay(d));
 
-export default function DangerZonePage({ state, risk }) {
+export default function DangerZonePage({ state, risk, stations, riversState }) {
   const { theme } = useTheme();
   const [statesGeo, setStatesGeo] = useState(null);
   const [day, setDay] = useState('peak');
   const [region, setRegion] = useState('all');
   const [minScore, setMinScore] = useState(0);
   const [selectedId, setSelectedId] = useState(null);
+  const [mapLayer, setMapLayer] = useState('zones');
 
   useEffect(() => {
     loadStates().then(setStatesGeo);
@@ -49,9 +57,10 @@ export default function DangerZonePage({ state, risk }) {
 
   const zones = useMemo(
     () =>
-      risk?.zones.filter((z) => region === 'all' || (region === 'east') === BORNEO.includes(z.state)) ?? [],
+      risk?.zones.filter((z) => inRegion(region, z.state)) ?? [],
     [risk, region],
   );
+  const regionStations = useMemo(() => stations?.filter((s) => inRegion(region, s.state)) ?? [], [stations, region]);
   const at = (z) => (day === 'peak' ? z.peak : z.days.find((d) => d.date === day));
   const ranked = [...zones].sort((a, b) => at(b).score - at(a).score || a.name.localeCompare(b.name));
 
@@ -138,8 +147,17 @@ export default function DangerZonePage({ state, risk }) {
         <Card
           className="card-map"
           title={`Flood danger map · ${day === 'peak' ? '7-day peak' : `${dayLabel(day)} ${fmtDate(day)}`}`}
-          subtitle="Districts and divisions by flood-risk index. Bigger circle = higher score. States shaded by their worst zone."
-          legend={RISK_LEVELS.map((l) => <Key key={l.key} color={color(l)} label={`${l.icon} ${l.label}`} shape="dot" />)}
+          subtitle={
+            mapLayer === 'rivers'
+              ? 'JPS river-level stations by last reported status. Hollow = old reading, not used in the score.'
+              : 'Districts and divisions by flood-risk index. Bigger circle = higher score. States shaded by their worst zone.'
+          }
+          actions={<Segmented label="Map layer" value={mapLayer} onChange={setMapLayer} options={MAP_LAYERS} />}
+          legend={
+            mapLayer === 'rivers'
+              ? Object.values(RIVER_LEVELS).map((l) => <Key key={l.key} color={theme.status[l.status]} label={`${l.icon} ${l.label}`} shape="dot" />)
+              : RISK_LEVELS.map((l) => <Key key={l.key} color={color(l)} label={`${l.icon} ${l.label}`} shape="dot" />)
+          }
         >
           <BaseMap>
             {statesGeo ? (
@@ -155,7 +173,7 @@ export default function DangerZonePage({ state, risk }) {
                 interactive={false}
               />
             ) : null}
-            {[...zones]
+            {(mapLayer === 'rivers' ? [] : [...zones])
               .filter((z) => z.point)
               .sort((a, b) => at(a).score - at(b).score || (a.id === selected?.id) - (b.id === selected?.id))
               .map((z) => {
@@ -186,6 +204,7 @@ export default function DangerZonePage({ state, risk }) {
                   </CircleMarker>
                 );
               })}
+            {mapLayer !== 'zones' ? <RiverMarkers stations={regionStations} small={mapLayer === 'both'} /> : null}
           </BaseMap>
         </Card>
 
@@ -307,6 +326,8 @@ export default function DangerZonePage({ state, risk }) {
 
         <Method />
       </div>
+
+      <RiverCard stations={regionStations} all={stations} riversState={riversState} onShow={() => setMapLayer('rivers')} />
     </div>
   );
 }
@@ -353,7 +374,7 @@ function RiskHero({ top, at, hotStates, counts, total, when }) {
         </div>
       </div>
       <aside className="risk-note">
-        <strong>Not an official warning.</strong> Score built from MET's 7-day forecast and warnings in force. For official flood alerts see{' '}
+        <strong>Not an official warning.</strong> Score built from MET's 7-day forecast, warnings in force and fresh JPS river levels. For official flood alerts see{' '}
         <a href="https://publicinfobanjir.water.gov.my" target="_blank" rel="noreferrer">
           JPS Public Infobanjir
         </a>{' '}
@@ -431,6 +452,7 @@ function ZoneDetail({ zone, day, onDay }) {
     rain: +x.rainPts.toFixed(1),
     monsoon: +x.monsoonPts.toFixed(1),
     warning: +x.warnPts.toFixed(1),
+    river: +x.riverPts.toFixed(1),
     score: x.score,
     x,
   }));
@@ -438,7 +460,8 @@ function ZoneDetail({ zone, day, onDay }) {
     { key: 'rain', label: 'Rain build-up', color: theme.series1 },
     { key: 'monsoon', label: 'Monsoon boost', color: theme.temp },
     { key: 'warning', label: 'MET warning', color: theme.series3 },
-  ];
+    { key: 'river', label: 'River level', color: theme.series4 },
+  ].filter((p) => p.key !== 'river' || data.some((x) => x.river > 0));
   const tick = { fill: theme.muted, fontSize: 12 };
 
   return (
@@ -509,7 +532,7 @@ function ZoneDetail({ zone, day, onDay }) {
 
 function Method() {
   return (
-    <Card className="method" title="How the index works" subtitle="Rule-based v2 model. Every input comes from the live MET API.">
+    <Card className="method" title="How the index works" subtitle="Rule-based v2 model. Inputs come from the live MET and JPS APIs.">
       <ol className="method-steps">
         <li>
           <strong>Daily rain load.</strong> Each day's forecast becomes a load: isolated rain {LEVEL_WEIGHT[1]}, isolated storms {LEVEL_WEIGHT[3]}, rain{' '}
@@ -528,13 +551,157 @@ function Method() {
           {WARNING_POINTS.critical} points (alert / severe / danger). Continuous-rain warnings count in full, thunderstorm alerts at half.
         </li>
         <li>
+          <strong>River levels.</strong> A JPS station near the zone reading alert / warning / danger adds {RIVER_POINTS.alert} /{' '}
+          {RIVER_POINTS.warning} / {RIVER_POINTS.danger} points today, fading {Math.round((1 - RIVER_FADE) * 100)}% a day. Only readings from the
+          last {FRESH_HOURS} hours count.
+        </li>
+        <li>
           <strong>Levels.</strong> {RISK_LEVELS.map((l) => `${l.label} ${l.min}+`).join(' · ')}.
         </li>
       </ol>
       <p className="method-note">
-        Limits: no river levels, rainfall totals or terrain yet, and the API has no past days, so the first day assumes yesterday was like today. Next
-        step: add JPS river and rain-gauge data, keep daily history, then train a model on past flood events.
+        Limits: no terrain or drainage data, river readings count only while the JPS feed is live, and the API has no past days, so the first day
+        assumes yesterday was like today. Next step: keep daily history, then train a model on past flood events.
       </p>
+    </Card>
+  );
+}
+
+function RiverMarkers({ stations, small }) {
+  const { theme } = useTheme();
+  // Draw normal stations first so raised rivers sit on top.
+  const sorted = [...stations].sort((a, b) => a.level.rank - b.level.rank);
+  return sorted.map((s) => {
+    const c = theme.status[s.level.status];
+    return (
+      <CircleMarker
+        key={`${s.id}-${theme.mode}-${small}`}
+        center={s.point}
+        radius={(small ? 3 : 4) + s.level.rank * 1.5}
+        pathOptions={{
+          color: s.fresh ? theme.surface : c,
+          weight: s.fresh ? 1 : 1.5,
+          fillColor: c,
+          fillOpacity: s.fresh ? 0.95 : 0.12,
+        }}
+      >
+        <MapTip className="map-tip" direction="top" offset={[0, -4]}>
+          <strong>{s.name}</strong>
+          <br />
+          {s.river ? `${s.river} · ` : ''}
+          {s.district}, {s.state}
+          <br />
+          {s.level.label} · {s.current} m (normal {s.normal ?? '—'}, danger {s.danger ?? '—'})
+          {s.trend ? ` · ${s.trend.toLowerCase().replace('_', ' ')}` : ''}
+          <br />
+          {s.fresh ? 'Updated' : 'Old reading'} {fmtDateTimeYear(s.updated)} · {fmtAge(s.ageH)} ago
+        </MapTip>
+      </CircleMarker>
+    );
+  });
+}
+
+const TREND_ICON = { RISING: '↑', RECEDING: '↓', NO_CHANGE: '→' };
+
+function RiverCard({ stations, all, riversState, onShow }) {
+  const { theme } = useTheme();
+  if (!all) {
+    return (
+      <Card title="River stations · JPS" subtitle="River levels from the data.gov.my flood-warning API.">
+        {riversState?.error ? <p className="empty">Could not load river stations: {riversState.error}</p> : <Loading label="Loading river stations…" />}
+      </Card>
+    );
+  }
+  const feed = feedFreshness(all);
+  const count = (key) => stations.filter((s) => s.level.key === key).length;
+  const raised = [...stations]
+    // Raised rivers, plus normal ones over halfway to danger. A "normal" station
+    // already past danger has mismatched thresholds, so it is left out.
+    .filter((s) => s.level.rank >= 1 || (s.toDanger >= 0.5 && s.toDanger < 1))
+    .sort((a, b) => b.level.rank - a.level.rank || (b.toDanger ?? 0) - (a.toDanger ?? 0))
+    .slice(0, 12);
+
+  return (
+    <Card
+      className="river-card"
+      title="River stations · JPS"
+      subtitle={`${stations.length} water-level stations with a reading. Status as last reported by each station.`}
+      actions={
+        <>
+          <span className={`feed-chip ${feed.fresh ? 'is-live' : 'is-stale'}`}>
+            <span className="feed-dot" aria-hidden="true" />
+            {feed.fresh ? `Live · updated ${fmtAge(feed.ageH)} ago` : `Feed paused · last update ${fmtAge(feed.ageH)} ago`}
+          </span>
+          <button className="link-btn" onClick={onShow}>
+            Show on map
+          </button>
+        </>
+      }
+    >
+      {!feed.fresh ? (
+        <div className="river-stale" role="status">
+          <strong>The JPS feed on data.gov.my has not updated since {fmtDateTimeYear(feed.latest)}.</strong> These readings are shown for reference only
+          and are not used in the flood score. When the feed starts again, readings from the last {FRESH_HOURS} hours will raise the score of the
+          nearest zone automatically.
+        </div>
+      ) : null}
+
+      <div className="river-counts">
+        {Object.values(RIVER_LEVELS).map((l) => (
+          <div key={l.key} className="river-count">
+            <StatusChip severity={l.status} icon={l.icon} label={l.label} />
+            <strong>{count(l.key)}</strong>
+          </div>
+        ))}
+        <div className="river-count">
+          <span className="muted">Fresh (under {FRESH_HOURS} h)</span>
+          <strong>{stations.filter((s) => s.fresh).length}</strong>
+        </div>
+      </div>
+
+      {raised.length ? (
+        <div className="matrix-scroll">
+          <table className="river-table">
+            <thead>
+              <tr>
+                <th>Station</th>
+                <th>State</th>
+                <th>Level vs danger</th>
+                <th>Status</th>
+                <th>Last reading</th>
+              </tr>
+            </thead>
+            <tbody>
+              {raised.map((s) => (
+                <tr key={s.id} className={s.fresh ? '' : 'is-stale'}>
+                  <td>
+                    <strong>{s.name}</strong>
+                    <small>{s.basin ?? s.river}</small>
+                  </td>
+                  <td>{s.state}</td>
+                  <td>
+                    <span className="river-gauge" title={`${s.current} m · normal ${s.normal} m · danger ${s.danger} m`}>
+                      <span style={{ width: `${Math.min(100, Math.max(2, (s.toDanger ?? 0) * 100))}%`, background: theme.status[s.level.status] }} />
+                    </span>
+                    <small>
+                      {s.current} m / {s.danger ?? '—'} m {s.trend ? TREND_ICON[s.trend] ?? '' : ''}
+                    </small>
+                  </td>
+                  <td>
+                    <StatusChip severity={s.level.status} icon={s.level.icon} label={s.level.label} />
+                  </td>
+                  <td>
+                    {fmtDateTimeYear(s.updated)}
+                    <small>{fmtAge(s.ageH)} ago</small>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      ) : (
+        <p className="empty">No station is above normal in this region.</p>
+      )}
     </Card>
   );
 }
