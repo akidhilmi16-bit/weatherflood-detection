@@ -2,13 +2,14 @@
 
 Live dashboard for MET Malaysia's open weather data
 ([data.gov.my Weather API](https://developer.data.gov.my/realtime-api/weather)).
-**v1** shows the data on maps and charts. **v2** will add flood-risk prediction.
+Maps and charts of the live data, plus a rule-based **flood-risk index** (Danger Zone tab).
 
 | Tab | API endpoint | What you see |
 |---|---|---|
 | Forecast | `GET /weather/forecast/` | 7-day outlook for 440 locations (states, districts, towns, divisions, recreation areas): rain-intensity map, 7-day outlook chart, state temperature ranges, 7-day matrix, per-location detail |
 | Warnings | `GET /weather/warning/` | Bulletins in force (thunderstorm, continuous rain, strong winds / rough seas…), affected states and districts on a map, severity, time left |
 | Earthquakes | `GET /weather/warning/earthquake/` | Regional events on a map (size = magnitude, colour = depth), magnitude timeline and distribution, event log, filters |
+| Danger Zone | forecast + warnings | Flood-risk index 0-100 for every district / division: gauge, danger map, ranked zones, score breakdown, 7-day trajectory, risk by state |
 
 ## Architecture
 
@@ -35,6 +36,7 @@ src/
   lib/conditions.js       Malay forecast phrase -> rain level 0-4 (+ English)
   lib/warnings.js         parse affected states/districts out of warning text
   lib/quakes.js           depth classes, distance parsing
+  lib/floodRisk.js        flood-risk index (rain build-up + monsoon + warnings)
   lib/theme.jsx           light/dark palettes (validated colour ramps)
   data/locations.json     coordinates for forecast locations (generated)
 public/data/malaysia_states.geojson
@@ -77,11 +79,25 @@ Or deploy from your machine with the Netlify CLI:
 npx netlify-cli deploy --build --prod
 ```
 
-## Roadmap (v2)
+## Flood-risk index (Danger Zone)
 
-- Flood-risk score per district: rain level over consecutive days + active
-  continuous-rain warnings, later combined with river levels / rainfall from
-  JPS (publicinfobanjir.water.gov.my).
-- Keep warning and forecast history (the API only serves current data).
+Indicative only, not an official warning. Per district / division and day:
+
+1. **Rain load** from the forecast phrase (isolated rain 0.6, isolated storms 1.2,
+   rain 2.4, thunderstorms 2.8) plus up to 1.2 when it lasts all day.
+2. **Build-up**: 55% of the previous day's build-up carries over, so wet days in
+   a row add up. Scaled x6.
+3. **Monsoon**: +20% from November to March in Kelantan, Terengganu, Pahang,
+   Johor, Sabah and Sarawak.
+4. **Warnings**: a MET land warning naming the zone adds 15 / 28 / 42 points
+   (alert / severe / danger); thunderstorm alerts count at half.
+
+Levels: Low 0+, Moderate 25+, High 50+, Severe 75+. Weights live in `lib/floodRisk.js`.
+
+## Roadmap
+
+- Add JPS river levels and rain-gauge totals (publicinfobanjir.water.gov.my).
+- Keep warning and forecast history (the API only serves current data), then
+  train a model on past flood events.
 
 Data: MET Malaysia via data.gov.my, CC BY 4.0.

@@ -3,15 +3,18 @@ import { useEndpoint } from './lib/useWeatherData.js';
 import { useTheme } from './lib/theme.jsx';
 import { enrichWarnings } from './lib/warnings.js';
 import { enrichQuakes } from './lib/quakes.js';
+import { buildRisk } from './lib/floodRisk.js';
 import { timeAgo } from './lib/format.js';
 import ForecastPage from './pages/ForecastPage.jsx';
 import WarningsPage from './pages/WarningsPage.jsx';
 import EarthquakePage from './pages/EarthquakePage.jsx';
+import DangerZonePage from './pages/DangerZonePage.jsx';
 
 const TABS = [
   { id: 'forecast', label: 'Forecast', hint: '7-day outlook' },
   { id: 'warnings', label: 'Warnings', hint: 'Active alerts' },
-  { id: 'earthquakes', label: 'Earthquakes', hint: 'Regional seismic' },
+  { id: 'earthquakes', label: 'Earthquakes', short: 'Quakes', hint: 'Regional seismic' },
+  { id: 'danger', label: 'Danger Zone', short: 'Danger', hint: 'Flood risk index' },
 ];
 
 const tabFromHash = () => {
@@ -34,12 +37,14 @@ export default function App() {
 
   const warnings = useMemo(() => (warningsRaw.data ? enrichWarnings(warningsRaw.data) : null), [warningsRaw.data]);
   const quakes = useMemo(() => (quakesRaw.data ? enrichQuakes(quakesRaw.data) : null), [quakesRaw.data]);
+  const risk = useMemo(() => (forecast.data ? buildRisk(forecast.data, warnings ?? []) : null), [forecast.data, warnings]);
 
   const activeWarnings = warnings?.filter((w) => w.status === 'active' || w.status === 'upcoming').length ?? 0;
   const quakes24h = quakes?.filter((q) => Date.now() - q.time < 864e5).length ?? 0;
-  const badges = { forecast: null, warnings: activeWarnings || null, earthquakes: quakes24h || null };
+  const dangerZones = risk?.zones.filter((z) => z.peak.score >= 50).length ?? 0;
+  const badges = { forecast: null, warnings: activeWarnings || null, earthquakes: quakes24h || null, danger: dangerZones || null };
 
-  const current = { forecast, warnings: warningsRaw, earthquakes: quakesRaw }[tab];
+  const current = { forecast, warnings: warningsRaw, earthquakes: quakesRaw, danger: forecast }[tab];
   const fetchedAt = current.fetchedAt ? new Date(current.fetchedAt) : null;
 
   return (
@@ -69,7 +74,8 @@ export default function App() {
               className={`tab ${tab === t.id ? 'is-active' : ''}`}
             >
               <span className="tab-label">
-                {t.label}
+                <span className={t.short ? 'tab-full' : undefined}>{t.label}</span>
+                {t.short ? <span className="tab-short">{t.short}</span> : null}
                 {badges[t.id] ? <span className="tab-badge">{badges[t.id]}</span> : null}
               </span>
               <span className="tab-hint">{t.hint}</span>
@@ -103,6 +109,7 @@ export default function App() {
         {tab === 'forecast' && <ForecastPage state={forecast} />}
         {tab === 'warnings' && <WarningsPage state={warningsRaw} warnings={warnings} />}
         {tab === 'earthquakes' && <EarthquakePage state={quakesRaw} quakes={quakes} />}
+        {tab === 'danger' && <DangerZonePage state={forecast} risk={risk} />}
       </main>
 
       <footer className="footer">
@@ -110,7 +117,7 @@ export default function App() {
           Data: <a href="https://developer.data.gov.my/realtime-api/weather" target="_blank" rel="noreferrer">MET Malaysia via data.gov.my</a> (CC BY 4.0)
           · Basemap © Esri, HERE, Garmin, © OpenStreetMap contributors · Geocoding © OpenStreetMap (Nominatim)
         </span>
-        <span className="footer-v2">v1 · live data · flood-risk prediction coming in v2</span>
+        <span className="footer-v2">v2 · live data · rule-based flood-risk index (indicative)</span>
       </footer>
     </div>
   );
