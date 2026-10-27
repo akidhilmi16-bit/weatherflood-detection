@@ -1675,6 +1675,76 @@ button {
   border-radius: 3px;
 }
 
+/* ---------- Pagination ---------- */
+
+.pager {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 12px;
+  padding-top: 12px;
+  font-size: 12.5px;
+  color: var(--muted);
+}
+
+.pager-ctl {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px;
+}
+
+.pager-size select {
+  font: inherit;
+  color: var(--ink2);
+  background: var(--page);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 5px 8px;
+  margin-right: 6px;
+  cursor: pointer;
+}
+
+.pager-btn {
+  min-width: 30px;
+  height: 30px;
+  padding: 0 8px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--page);
+  color: var(--ink2);
+  font-family: var(--display);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.pager-btn:hover:not(:disabled) {
+  background: var(--surface2);
+  color: var(--ink);
+}
+
+.pager-btn.is-on {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--page);
+}
+
+.pager-btn:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.pager-btn:focus-visible,
+.pager-size select:focus-visible {
+  outline: 2px solid var(--series1);
+  outline-offset: 1px;
+}
+
+.pager-gap {
+  padding: 0 2px;
+}
+
 /* ---------- Responsive ---------- */
 
 @media (max-width: 1180px) {

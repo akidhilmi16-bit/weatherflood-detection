@@ -14,7 +14,8 @@ import {
   ZAxis,
 } from 'recharts';
 import BaseMap from '../components/BaseMap.jsx';
-import { Card, ChartTooltip, Key, Loading, Segmented, StatTile } from '../components/ui.jsx';
+import { Card, ChartTooltip, Key, Loading, Pager, Segmented, StatTile } from '../components/ui.jsx';
+import { usePagination } from '../lib/usePagination.js';
 import { DEPTH_CLASSES, quakeRadius } from '../lib/quakes.js';
 import { loadStates } from '../lib/geo.js';
 import { fmtDateTime, timeAgo } from '../lib/format.js';
@@ -62,6 +63,17 @@ export default function EarthquakePage({ state, quakes }) {
       (q) => q.time >= since && (q.magdefault ?? 0) >= minMag && (region === 'all' || (q.distMy != null && q.distMy < 1000)),
     );
   }, [quakes, period, minMag, region]);
+  const pager = usePagination(list, { pageSize: 20, resetKey: `${period}-${minMag}-${region}` });
+
+  // An event picked on the map or chart jumps the log to its page.
+  const [jumpTo, setJumpTo] = useState(null);
+  useEffect(() => {
+    if (jumpTo) pager.reveal((q) => q === jumpTo.q);
+  }, [jumpTo]);
+  const pick = (q) => {
+    setSelected(q);
+    setJumpTo({ q });
+  };
 
   if (!quakes) return state.error ? null : <Loading />;
 
@@ -139,7 +151,7 @@ export default function EarthquakePage({ state, quakes }) {
                       fillColor: depthColor(q.depthIdx),
                       fillOpacity: 0.85,
                     }}
-                    eventHandlers={{ click: () => setSelected(q) }}
+                    eventHandlers={{ click: () => pick(q) }}
                   >
                     <MapTip className="map-tip" direction="top">
                       <strong>M{q.magdefault}</strong> · {q.location_original}
@@ -162,7 +174,7 @@ export default function EarthquakePage({ state, quakes }) {
             </div>
           </header>
           <div className="warn-scroll">
-            {list.map((q) => (
+            {pager.items.map((q) => (
               <button key={`${q.utcdatetime}-${q.lat}`} className={`quake ${selected === q ? 'is-sel' : ''}`} onClick={() => setSelected(q)}>
                 <span className="quake-mag" style={{ borderColor: depthColor(q.depthIdx) }}>
                   {q.magdefault.toFixed(1)}
@@ -178,6 +190,7 @@ export default function EarthquakePage({ state, quakes }) {
             ))}
             {!list.length ? <p className="empty">No events match these filters.</p> : null}
           </div>
+          <Pager pager={pager} noun="events" />
         </section>
       </div>
 
@@ -220,7 +233,7 @@ export default function EarthquakePage({ state, quakes }) {
                   />
                 }
               />
-              <Scatter data={timeline} onClick={(d) => setSelected(d.q)} style={{ cursor: 'pointer' }}>
+              <Scatter data={timeline} onClick={(d) => pick(d.q)} style={{ cursor: 'pointer' }}>
                 {timeline.map((d, i) => (
                   <Cell key={i} fill={depthColor(d.q.depthIdx)} stroke={theme.surface} strokeWidth={1.5} />
                 ))}

@@ -2,7 +2,8 @@ import { useEffect, useMemo, useState } from 'react';
 import { CircleMarker, GeoJSON, Tooltip as MapTip } from 'react-leaflet';
 import { Bar, BarChart, CartesianGrid, LabelList, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 import BaseMap from '../components/BaseMap.jsx';
-import { Card, ChartTooltip, Key, Loading, Segmented, StatTile, StatusChip } from '../components/ui.jsx';
+import { Card, ChartTooltip, Key, Loading, Pager, Segmented, StatTile, StatusChip } from '../components/ui.jsx';
+import { usePagination } from '../lib/usePagination.js';
 import { SEVERITY, mytDate } from '../lib/warnings.js';
 import { loadStates, locationPoint } from '../lib/geo.js';
 import { fmtDateTime, timeAgo, timeLeft } from '../lib/format.js';
@@ -29,6 +30,7 @@ export default function WarningsPage({ state, warnings }) {
         .sort((a, b) => SEVERITY[b.severity].rank - SEVERITY[a.severity].rank || (b.warning_issue.issued > a.warning_issue.issued ? 1 : -1)),
     [warnings, showExpired],
   );
+  const pager = usePagination(listed, { pageSize: 10, resetKey: showExpired });
 
   if (!warnings) return state.error ? null : <Loading />;
 
@@ -142,7 +144,7 @@ export default function WarningsPage({ state, warnings }) {
             </div>
           </header>
           <div className="warn-scroll">
-            {listed.map((w) => (
+            {pager.items.map((w) => (
               <WarningCard key={w.key} w={w} lang={lang} selected={w.key === selectedKey} onSelect={() => setSelectedKey(w.key === selectedKey ? null : w.key)} />
             ))}
             {!listed.length ? <p className="empty">No bulletins right now.</p> : null}
@@ -152,6 +154,7 @@ export default function WarningsPage({ state, warnings }) {
               </button>
             ) : null}
           </div>
+          <Pager pager={pager} noun="bulletins" sizes={[5, 10, 20]} />
         </section>
       </div>
 

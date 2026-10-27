@@ -12,7 +12,8 @@ import {
   YAxis,
 } from 'recharts';
 import BaseMap from '../components/BaseMap.jsx';
-import { Card, ChartTooltip, Key, Loading, Segmented, StatTile } from '../components/ui.jsx';
+import { Card, ChartTooltip, Key, Loading, Pager, Segmented, StatTile } from '../components/ui.jsx';
+import { usePagination } from '../lib/usePagination.js';
 import { HAZE, LEVELS, LOCATION_TYPES, parseCondition, translateWhen } from '../lib/conditions.js';
 import { STATE_SHAPE, loadStates, locationPoint, locationState } from '../lib/geo.js';
 import { fmtDate, fmtDay, todayMYT } from '../lib/format.js';
@@ -83,6 +84,7 @@ export default function ForecastPage({ state }) {
           : stormDays(b) - stormDays(a) || (b.days[day]?.cond.level ?? 0) - (a.days[day]?.cond.level ?? 0),
     );
   }, [inLayer, query, sortBy, day]);
+  const pager = usePagination(visible, { pageSize: 20, resetKey: `${layer}-${query}-${sortBy}` });
 
   // Default selection: the stormiest location of the current layer on the chosen day.
   useEffect(() => {
@@ -91,6 +93,16 @@ export default function ForecastPage({ state }) {
     const top = [...inLayer].sort((a, b) => (b.days[day]?.cond.level ?? 0) - (a.days[day]?.cond.level ?? 0))[0];
     setSelectedId(top?.id ?? null);
   }, [inLayer, day, selectedId]);
+
+  // A location picked on the map jumps the matrix to its page.
+  const [jumpTo, setJumpTo] = useState(null);
+  useEffect(() => {
+    if (jumpTo) pager.reveal((l) => l.id === jumpTo.id);
+  }, [jumpTo]);
+  const pick = (id) => {
+    setSelectedId(id);
+    setJumpTo({ id });
+  };
 
   if (!model || !day) return state.error ? null : <Loading />;
 
@@ -208,7 +220,7 @@ export default function ForecastPage({ state }) {
                     `<strong>${loc.name}</strong><br/>${row.cond.english}<br/>${row.min_temp}–${row.max_temp}°C`,
                     { sticky: true, className: 'map-tip' },
                   );
-                  lyr.on('click', () => setSelectedId(loc.id));
+                  lyr.on('click', () => pick(loc.id));
                 }}
               />
             ) : null}
@@ -230,7 +242,7 @@ export default function ForecastPage({ state }) {
                           fillColor: rainColor(theme, r.cond),
                           fillOpacity: 1,
                         }}
-                        eventHandlers={{ click: () => setSelectedId(l.id) }}
+                        eventHandlers={{ click: () => pick(l.id) }}
                       >
                         <MapTip className="map-tip" direction="top" offset={[0, -6]}>
                           <strong>{l.name}</strong>
@@ -366,7 +378,7 @@ export default function ForecastPage({ state }) {
               </tr>
             </thead>
             <tbody>
-              {visible.map((l) => (
+              {pager.items.map((l) => (
                 <tr key={l.id} className={l.id === selectedId ? 'is-sel' : ''} onClick={() => setSelectedId(l.id)}>
                   <td className="matrix-name">
                     <span>{l.name}</span>
@@ -395,6 +407,7 @@ export default function ForecastPage({ state }) {
           </table>
           {!visible.length ? <p className="empty">No locations match “{query}”.</p> : null}
         </div>
+        <Pager pager={pager} noun={LAYER_LABEL[layer].toLowerCase()} sizes={[20, 50, 100]} />
       </Card>
     </div>
   );

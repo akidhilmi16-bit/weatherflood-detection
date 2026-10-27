@@ -97,3 +97,68 @@ export function Loading({ label = 'Loading live data…' }) {
     </div>
   );
 }
+
+// Page numbers to show: always the first and last, the current one and its
+// neighbours, with a gap marker where pages are skipped.
+function pageList(page, pages) {
+  const keep = new Set([1, pages, page - 1, page, page + 1].filter((p) => p >= 1 && p <= pages));
+  const out = [];
+  let prev = 0;
+  for (const p of [...keep].sort((a, b) => a - b)) {
+    if (p - prev > 1) out.push(`gap-${p}`);
+    out.push(p);
+    prev = p;
+  }
+  return out;
+}
+
+/** Footer for a paged list or table; takes the object from usePagination. */
+export function Pager({ pager, noun = 'rows', sizes = [10, 20, 50] }) {
+  const { page, pages, pageSize, total, start, setPage, setPageSize } = pager;
+  if (!total) return null;
+  return (
+    <nav className="pager" aria-label={`${noun} pages`}>
+      <span className="pager-range">
+        {start + 1}–{Math.min(start + pageSize, total)} of {total} {noun}
+      </span>
+      <div className="pager-ctl">
+        <label className="pager-size">
+          <span className="sr-only">Rows per page</span>
+          <select value={pageSize} onChange={(e) => setPageSize(Number(e.target.value))}>
+            {sizes.map((n) => (
+              <option key={n} value={n}>
+                {n} / page
+              </option>
+            ))}
+          </select>
+        </label>
+        {pages > 1 ? (
+          <>
+            <button className="pager-btn" onClick={() => setPage(page - 1)} disabled={page === 1} aria-label="Previous page">
+              ‹
+            </button>
+            {pageList(page, pages).map((p) =>
+              typeof p === 'string' ? (
+                <span key={p} className="pager-gap" aria-hidden="true">
+                  …
+                </span>
+              ) : (
+                <button
+                  key={p}
+                  className={`pager-btn ${p === page ? 'is-on' : ''}`}
+                  onClick={() => setPage(p)}
+                  aria-current={p === page ? 'page' : undefined}
+                >
+                  {p}
+                </button>
+              ),
+            )}
+            <button className="pager-btn" onClick={() => setPage(page + 1)} disabled={page === pages} aria-label="Next page">
+              ›
+            </button>
+          </>
+        ) : null}
+      </div>
+    </nav>
+  );
+}

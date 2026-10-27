@@ -14,7 +14,8 @@ import {
   YAxis,
 } from 'recharts';
 import BaseMap from '../components/BaseMap.jsx';
-import { Card, ChartTooltip, Key, Loading, Segmented, StatTile, StatusChip } from '../components/ui.jsx';
+import { Card, ChartTooltip, Key, Loading, Pager, Segmented, StatTile, StatusChip } from '../components/ui.jsx';
+import { usePagination } from '../lib/usePagination.js';
 import { DECAY, LEVEL_WEIGHT, MONSOON, RISK_LEVELS, RIVER_FADE, RIVER_POINTS, WARNING_POINTS, drivers } from '../lib/floodRisk.js';
 import { FRESH_HOURS, RIVER_LEVELS, feedFreshness, fmtAge } from '../lib/rivers.js';
 import { loadStates } from '../lib/geo.js';
@@ -63,17 +64,28 @@ export default function DangerZonePage({ state, risk, stations, riversState }) {
   const regionStations = useMemo(() => stations?.filter((s) => inRegion(region, s.state)) ?? [], [stations, region]);
   const at = (z) => (day === 'peak' ? z.peak : z.days.find((d) => d.date === day));
   const ranked = [...zones].sort((a, b) => at(b).score - at(a).score || a.name.localeCompare(b.name));
+  const listed = ranked.filter((z) => at(z).score >= minScore);
+  const pager = usePagination(listed, { pageSize: 10, resetKey: `${day}-${region}-${minScore}` });
 
   useEffect(() => {
     if (ranked.length && !ranked.some((z) => z.id === selectedId)) setSelectedId(ranked[0].id);
   });
+
+  // A zone picked on the map jumps the list to its page.
+  const [jumpTo, setJumpTo] = useState(null);
+  useEffect(() => {
+    if (jumpTo) pager.reveal((z) => z.id === jumpTo.id);
+  }, [jumpTo]);
+  const pick = (id) => {
+    setSelectedId(id);
+    setJumpTo({ id });
+  };
 
   if (!risk) return state.error ? null : <Loading />;
 
   const selected = zones.find((z) => z.id === selectedId) ?? ranked[0];
   const count = (key) => zones.filter((z) => at(z).level.key === key).length;
   const top = ranked[0];
-  const listed = ranked.filter((z) => at(z).score >= minScore);
   const warned = zones.filter((z) => at(z).warnPts > 0).length;
 
   // Day with the most zones at moderate or worse
@@ -192,7 +204,7 @@ export default function DangerZonePage({ state, risk, stations, riversState }) {
                       fillOpacity: d.score < 25 ? 0.55 : 0.92,
                       className: alarm && !isSel ? 'risk-pulse' : undefined,
                     }}
-                    eventHandlers={{ click: () => setSelectedId(z.id) }}
+                    eventHandlers={{ click: () => pick(z.id) }}
                   >
                     <MapTip className="map-tip" direction="top" offset={[0, -6]}>
                       <strong>{z.name}</strong>, {z.state}
@@ -221,12 +233,12 @@ export default function DangerZonePage({ state, risk, stations, riversState }) {
             </div>
           </header>
           <ol className="warn-scroll zone-scroll">
-            {listed.slice(0, 60).map((z, i) => {
+            {pager.items.map((z, i) => {
               const d = at(z);
               return (
                 <li key={z.id}>
                   <button className={`zone lvl-${d.level.key} ${z.id === selected?.id ? 'is-sel' : ''}`} onClick={() => setSelectedId(z.id)}>
-                    <span className="zone-rank">{i + 1}</span>
+                    <span className="zone-rank">{pager.start + i + 1}</span>
                     <span className="zone-body">
                       <span className="zone-name">
                         <strong>{z.name}</strong>
@@ -245,6 +257,7 @@ export default function DangerZonePage({ state, risk, stations, riversState }) {
             })}
             {!listed.length ? <p className="empty">No zone reaches this level {when}.</p> : null}
           </ol>
+          <Pager pager={pager} noun="zones" />
         </section>
       </div>
 
@@ -605,6 +618,16 @@ const TREND_ICON = { RISING: '↑', RECEDING: '↓', NO_CHANGE: '→' };
 
 function RiverCard({ stations, all, riversState, onShow }) {
   const { theme } = useTheme();
+  const raised = useMemo(
+    () =>
+      [...stations]
+        // Raised rivers, plus normal ones over halfway to danger. A "normal" station
+        // already past danger has mismatched thresholds, so it is left out.
+        .filter((s) => s.level.rank >= 1 || (s.toDanger >= 0.5 && s.toDanger < 1))
+        .sort((a, b) => b.level.rank - a.level.rank || (b.toDanger ?? 0) - (a.toDanger ?? 0)),
+    [stations],
+  );
+  const pager = usePagination(raised, { pageSize: 10, resetKey: stations });
   if (!all) {
     return (
       <Card title="River stations · JPS" subtitle="River levels from the data.gov.my flood-warning API.">
@@ -614,12 +637,6 @@ function RiverCard({ stations, all, riversState, onShow }) {
   }
   const feed = feedFreshness(all);
   const count = (key) => stations.filter((s) => s.level.key === key).length;
-  const raised = [...stations]
-    // Raised rivers, plus normal ones over halfway to danger. A "normal" station
-    // already past danger has mismatched thresholds, so it is left out.
-    .filter((s) => s.level.rank >= 1 || (s.toDanger >= 0.5 && s.toDanger < 1))
-    .sort((a, b) => b.level.rank - a.level.rank || (b.toDanger ?? 0) - (a.toDanger ?? 0))
-    .slice(0, 12);
 
   return (
     <Card
@@ -672,7 +689,7 @@ function RiverCard({ stations, all, riversState, onShow }) {
               </tr>
             </thead>
             <tbody>
-              {raised.map((s) => (
+              {pager.items.map((s) => (
                 <tr key={s.id} className={s.fresh ? '' : 'is-stale'}>
                   <td>
                     <strong>{s.name}</strong>
@@ -702,6 +719,7 @@ function RiverCard({ stations, all, riversState, onShow }) {
       ) : (
         <p className="empty">No station is above normal in this region.</p>
       )}
+      <Pager pager={pager} noun="stations" />
     </Card>
   );
 }
