@@ -1,6 +1,8 @@
-// JPS river-level and rain-gauge stations from data.gov.my /flood-warning/.
-// The feed can stop updating (it was frozen at 23 Feb 2024 when this was
-// written), so every reading carries its age and only fresh ones count.
+// JPS river-level stations, from two sources turned into one shape:
+// - live: our /api/rivers proxy over JPS Public Infobanjir (enrichJpsStations)
+// - fallback: data.gov.my /flood-warning/, frozen at 23 Feb 2024 when this
+//   was written (enrichStations)
+// Every reading carries its age, and only fresh ones count in the score.
 
 export const FRESH_HOURS = 6;
 
@@ -63,6 +65,7 @@ export function enrichStations(rows, now = Date.now()) {
         updated,
         ageH,
         fresh: ageH <= FRESH_HOURS,
+        source: 'data.gov.my',
         // How far the river is from normal (0) to danger (1)
         toDanger: danger != null && normal != null && danger > normal ? (r.water_level_current - normal) / (danger - normal) : null,
       };
@@ -83,4 +86,78 @@ export function fmtAge(hours) {
   if (hours < 48) return `${Math.round(hours)} h`;
   const days = Math.round(hours / 24);
   return days < 730 ? `${days} days` : `${(days / 365).toFixed(1)} years`;
+}
+
+// JPS colours each level cell; the Malay class names map onto our levels.
+const JPS_STATUS = { normal: 'NORMAL', waspada: 'ALERT', amaran: 'WARNING', bahaya: 'DANGER' };
+
+// JPS district names that differ from the forecast's district names.
+const DISTRICT_ALIASES = { 'CAMERON HIGHLANDS': 'Tanah Tinggi Cameron' };
+
+const key = (s) => (s ?? '').toUpperCase().replace(/[^A-Z0-9]/g, '');
+
+function statusFromThresholds(r) {
+  if (r.danger != null && r.level >= r.danger) return 'DANGER';
+  if (r.warning != null && r.level >= r.warning) return 'WARNING';
+  if (r.alert != null && r.level >= r.alert) return 'ALERT';
+  return 'NORMAL';
+}
+
+// "27/10/2026 11:45:00" in Malaysia time
+function jpsTime(s) {
+  const m = /(\d{2})\/(\d{2})\/(\d{4}) (\d{2}):(\d{2})/.exec(s ?? '');
+  return m ? new Date(`${m[3]}-${m[2]}-${m[1]}T${m[4]}:${m[5]}:00+08:00`) : null;
+}
+
+/**
+ * Stations from the /api/rivers proxy. JPS pages have no coordinates, so a
+ * station takes them from the data.gov.my list when the name matches, else it
+ * sits near its district's forecast point (marked approximate).
+ */
+export function enrichJpsStations(payload, refRows = [], zonePoint = () => null, now = Date.now()) {
+  const ref = new Map(refRows.map((r) => [`${key(r.station_name)}|${STATE[r.state] ?? r.state}`, r]));
+  const perDistrict = new Map();
+  return payload.stations
+    .map((r) => {
+      const state = STATE[r.state.toUpperCase()] ?? r.state;
+      const district = DISTRICT_ALIASES[r.district.toUpperCase()] ?? r.district;
+      const match = ref.get(`${key(r.name)}|${state}`);
+      let point = match ? [match.latitude, match.longitude] : null;
+      if (!point) {
+        const base = zonePoint(district, state);
+        if (base) {
+          // Spread stations of one district on a small spiral so they don't stack.
+          const n = perDistrict.get(district) ?? 0;
+          perDistrict.set(district, n + 1);
+          const a = n * 2.4;
+          const d = 0.025 * Math.sqrt(n);
+          point = [base[0] + d * Math.sin(a), base[1] + d * Math.cos(a)];
+        }
+      }
+      const updated = jpsTime(r.updated);
+      const ageH = updated ? (now - updated) / 36e5 : Infinity;
+      return {
+        id: r.id,
+        name: r.name,
+        river: r.river,
+        basin: r.basin,
+        district,
+        state,
+        point,
+        approx: !match,
+        current: r.level,
+        normal: r.normal,
+        alert: r.alert,
+        warning: r.warning,
+        danger: r.danger,
+        trend: null,
+        level: RIVER_LEVELS[JPS_STATUS[r.status] ?? statusFromThresholds(r)],
+        updated,
+        ageH,
+        fresh: ageH <= FRESH_HOURS,
+        source: 'JPS Public Infobanjir',
+        toDanger: r.danger != null && r.normal != null && r.danger > r.normal ? (r.level - r.normal) / (r.danger - r.normal) : null,
+      };
+    })
+    .filter((s) => s.point);
 }

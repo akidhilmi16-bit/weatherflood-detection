@@ -5,8 +5,11 @@
 [build.environment]
   NODE_VERSION = "20"
 
-# No backend: the browser calls https://api.data.gov.my directly (it sends
+# The browser calls https://api.data.gov.my directly (it sends
 # Access-Control-Allow-Origin: *), so each visitor gets their own 4 req/min quota.
+# One function, /api/rivers, reads live river levels from JPS Public Infobanjir.
+[functions]
+  directory = "netlify/functions"
 
 # Single-page app fallback
 [[redirects]]

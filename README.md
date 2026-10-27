@@ -19,8 +19,9 @@ Browser ──fetch──> https://api.data.gov.my/weather/...   (CORS: *)
    └─ static site on Netlify (Vite + React build in dist/)
 ```
 
-No backend. The API sends `Access-Control-Allow-Origin: *`, so the browser calls it
-directly and every visitor gets their own rate-limit quota (**4 requests/minute per IP**).
+Almost no backend. The data.gov.my API sends `Access-Control-Allow-Origin: *`, so the
+browser calls it directly and every visitor gets their own rate-limit quota
+(**4 requests/minute per IP**). The one exception is live river levels (below).
 Responses are cached in `localStorage` (forecast 1 h, warnings and earthquakes 10 min).
 If the API returns 429 or fails, the last cached copy is shown with a "Cached" badge.
 
@@ -38,6 +39,8 @@ src/
   lib/quakes.js           depth classes, distance parsing
   lib/floodRisk.js        flood-risk index (rain build-up + monsoon + warnings + rivers)
   lib/rivers.js           JPS river stations: status, thresholds, freshness
+netlify/functions/rivers.mjs   /api/rivers proxy over JPS Public Infobanjir
+netlify/jps.mjs                fetch + parse the JPS state pages
   lib/theme.jsx           light/dark palettes (validated colour ramps)
   data/locations.json     coordinates for forecast locations (generated)
 public/data/malaysia_states.geojson
@@ -56,9 +59,28 @@ scripts/geocode-locations.mjs
   "over the states of …" part. Marine warnings ("waters of …") name sea areas, so
   they are listed but not mapped.
 - **Warnings have no history.** The endpoint returns only current bulletins.
-- **The JPS river feed (`/flood-warning/`) can go stale.** As of Oct 2026 its newest
-  reading is 23 Feb 2024. `lib/rivers.js` marks each reading's age; only readings
-  under 6 hours old count in the flood score, so old data is shown but never scored.
+- **The JPS river feed (`/flood-warning/`) is frozen.** As of Oct 2026 its newest
+  reading is 23 Feb 2024. Live levels come instead from JPS Public Infobanjir
+  through our proxy (next section); data.gov.my is the fallback and supplies
+  coordinates. Only readings under 6 hours old count in the flood score.
+
+## Live river levels: the /api/rivers proxy
+
+JPS Public Infobanjir (publicinfobanjir.water.gov.my) has live readings but no API:
+each state page is a server-built HTML table, and the site doesn't allow other
+origins. `netlify/functions/rivers.mjs` (served at `/api/rivers`) fetches the 15
+state pages in parallel, parses the tables (`netlify/jps.mjs`) and returns JSON.
+
+- Netlify's CDN caches the answer for 15 minutes, shared by all visitors, so JPS
+  sees a few requests an hour. robots.txt allows crawling.
+- A state that times out keeps its last good stations; if nothing parses (layout
+  change or JPS down) the function returns 502, logs an error, and the app falls
+  back to data.gov.my.
+- JPS pages have no coordinates: a station uses the data.gov.my coordinates when
+  its name matches, otherwise it is drawn near its district centre.
+- In `npm run dev`, Vite serves the same function (see `vite.config.js`).
+- It is not an official API. For a public launch, ask JPS for permission and
+  report the frozen feed to data.gov.my (dataterbuka@jdn.gov.my).
 
 ## Run locally
 
@@ -103,7 +125,8 @@ Levels: Low 0+, Moderate 25+, High 50+, Severe 75+. Weights live in `lib/floodRi
 
 ## Roadmap
 
-- Live river levels if the data.gov.my JPS feed stays paused (publicinfobanjir.water.gov.my).
+- If JPS pages often take over 8 s, move the proxy to a scheduled function that
+  stores results in Netlify Blobs, so visitors never wait on JPS.
 - Keep warning and forecast history (the API only serves current data), then
   train a model on past flood events.
 

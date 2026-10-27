@@ -4,7 +4,8 @@ import { useTheme } from './lib/theme.jsx';
 import { enrichWarnings } from './lib/warnings.js';
 import { enrichQuakes } from './lib/quakes.js';
 import { buildRisk } from './lib/floodRisk.js';
-import { enrichStations } from './lib/rivers.js';
+import { enrichJpsStations, enrichStations } from './lib/rivers.js';
+import { districtPoint } from './lib/geo.js';
 import { timeAgo } from './lib/format.js';
 import ForecastPage from './pages/ForecastPage.jsx';
 import WarningsPage from './pages/WarningsPage.jsx';
@@ -30,6 +31,7 @@ export default function App() {
   const warningsRaw = useEndpoint('warnings');
   const quakesRaw = useEndpoint('earthquakes');
   const riversRaw = useEndpoint('rivers');
+  const riversLive = useEndpoint('riversLive');
 
   useEffect(() => {
     const onHash = () => setTab(tabFromHash());
@@ -39,7 +41,12 @@ export default function App() {
 
   const warnings = useMemo(() => (warningsRaw.data ? enrichWarnings(warningsRaw.data) : null), [warningsRaw.data]);
   const quakes = useMemo(() => (quakesRaw.data ? enrichQuakes(quakesRaw.data) : null), [quakesRaw.data]);
-  const stations = useMemo(() => (riversRaw.data ? enrichStations(riversRaw.data) : null), [riversRaw.data]);
+  // Live JPS readings through our proxy; the frozen data.gov.my feed is the fallback
+  // (and supplies coordinates for JPS stations it also lists).
+  const stations = useMemo(() => {
+    if (riversLive.data?.stations?.length) return enrichJpsStations(riversLive.data, riversRaw.data ?? [], districtPoint);
+    return riversRaw.data ? enrichStations(riversRaw.data) : null;
+  }, [riversLive.data, riversRaw.data]);
   const risk = useMemo(
     () => (forecast.data ? buildRisk(forecast.data, warnings ?? [], stations ?? []) : null),
     [forecast.data, warnings, stations],
@@ -115,7 +122,7 @@ export default function App() {
         {tab === 'forecast' && <ForecastPage state={forecast} />}
         {tab === 'warnings' && <WarningsPage state={warningsRaw} warnings={warnings} />}
         {tab === 'earthquakes' && <EarthquakePage state={quakesRaw} quakes={quakes} />}
-        {tab === 'danger' && <DangerZonePage state={forecast} risk={risk} stations={stations} riversState={riversRaw} />}
+        {tab === 'danger' && <DangerZonePage state={forecast} risk={risk} stations={stations} riversState={riversLive.data ? riversLive : riversRaw} />}
       </main>
 
       <footer className="footer">

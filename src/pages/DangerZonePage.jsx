@@ -608,6 +608,12 @@ function RiverMarkers({ stations, small }) {
           {s.trend ? ` · ${s.trend.toLowerCase().replace('_', ' ')}` : ''}
           <br />
           {s.fresh ? 'Updated' : 'Old reading'} {fmtDateTimeYear(s.updated)} · {fmtAge(s.ageH)} ago
+          {s.approx ? (
+            <>
+              <br />
+              <em>Position approximate (district centre)</em>
+            </>
+          ) : null}
         </MapTip>
       </CircleMarker>
     );
@@ -630,19 +636,24 @@ function RiverCard({ stations, all, riversState, onShow }) {
   const pager = usePagination(raised, { pageSize: 10, resetKey: stations });
   if (!all) {
     return (
-      <Card title="River stations · JPS" subtitle="River levels from the data.gov.my flood-warning API.">
+      <Card title="River stations · JPS" subtitle="Live river levels from JPS Public Infobanjir.">
         {riversState?.error ? <p className="empty">Could not load river stations: {riversState.error}</p> : <Loading label="Loading river stations…" />}
       </Card>
     );
   }
   const feed = feedFreshness(all);
+  const live = all[0]?.source === 'JPS Public Infobanjir';
   const count = (key) => stations.filter((s) => s.level.key === key).length;
 
   return (
     <Card
       className="river-card"
       title="River stations · JPS"
-      subtitle={`${stations.length} water-level stations with a reading. Status as last reported by each station.`}
+      subtitle={
+        live
+          ? `${stations.length} water-level stations, read from the JPS Public Infobanjir website every 15 minutes.`
+          : `${stations.length} water-level stations from the data.gov.my flood-warning API (live JPS source unavailable).`
+      }
       actions={
         <>
           <span className={`feed-chip ${feed.fresh ? 'is-live' : 'is-stale'}`}>
@@ -657,10 +668,21 @@ function RiverCard({ stations, all, riversState, onShow }) {
     >
       {!feed.fresh ? (
         <div className="river-stale" role="status">
-          <strong>The JPS feed on data.gov.my has not updated since {fmtDateTimeYear(feed.latest)}.</strong> These readings are shown for reference only
-          and are not used in the flood score. When the feed starts again, readings from the last {FRESH_HOURS} hours will raise the score of the
-          nearest zone automatically.
+          <strong>
+            {live ? 'JPS Public Infobanjir' : 'The JPS feed on data.gov.my'} has not updated since {fmtDateTimeYear(feed.latest)}.
+          </strong>{' '}
+          These readings are shown for reference only and are not used in the flood score. Readings from the last {FRESH_HOURS} hours raise the score
+          of their district automatically.
         </div>
+      ) : null}
+      {live ? (
+        <p className="river-source">
+          Unofficial: JPS publishes these levels only as web pages, so this site reads{' '}
+          <a href="https://publicinfobanjir.water.gov.my" target="_blank" rel="noreferrer">
+            publicinfobanjir.water.gov.my
+          </a>{' '}
+          through its own proxy. Stations not in the data.gov.my list are placed at their district centre.
+        </p>
       ) : null}
 
       <div className="river-counts">

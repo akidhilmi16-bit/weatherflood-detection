@@ -1597,6 +1597,13 @@ button {
   color: var(--ink);
 }
 
+.river-source {
+  margin: 0 0 14px;
+  font-size: 12px;
+  line-height: 1.55;
+  color: var(--muted);
+}
+
 .river-counts {
   display: flex;
   flex-wrap: wrap;

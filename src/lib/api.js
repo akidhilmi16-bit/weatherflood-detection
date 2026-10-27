@@ -11,6 +11,8 @@ export const ENDPOINTS = {
   earthquakes: { path: '/weather/warning/earthquake/', query: { sort: '-utcdatetime', limit: 500 }, ttl: 10 * 60 * 1000 },
   // JPS river-level and rain-gauge stations
   rivers: { path: '/flood-warning/', query: {}, ttl: 15 * 60 * 1000 },
+  // Live JPS river levels through our own proxy (netlify/functions/rivers.mjs)
+  riversLive: { url: '/api/rivers', query: {}, ttl: 10 * 60 * 1000 },
 };
 
 const cacheKey = (name) => `wf-cache:${name}`;
@@ -50,7 +52,7 @@ export async function fetchEndpoint(name, { force = false } = {}) {
     return { data: cached.data, fetchedAt: cached.savedAt, stale: false };
   }
 
-  const url = new URL(BASE + ep.path);
+  const url = new URL(ep.url ?? BASE + ep.path, window.location.origin);
   for (const [k, v] of Object.entries(ep.query)) url.searchParams.set(k, v);
 
   try {

@@ -55,6 +55,16 @@ export function locationState(id, name) {
 
 export const ALL_LOCATIONS = LOCATIONS;
 
+// "name|state" -> point of the district / division with that name
+const DISTRICT_POINTS = new Map(
+  Object.entries(LOCATIONS)
+    .filter(([id]) => id.startsWith('Ds') || id.startsWith('Dv'))
+    .map(([, l]) => [`${l.name.toLowerCase()}|${l.state}`, [l.lat, l.lon]]),
+);
+
+/** Forecast point of a district by name, e.g. districtPoint('Klang', 'Selangor'). */
+export const districtPoint = (name, state) => DISTRICT_POINTS.get(`${(name ?? '').toLowerCase()}|${state}`) ?? null;
+
 let statesPromise;
 export function loadStates() {
   statesPromise ??= fetch('/data/malaysia_states.geojson').then((r) => r.json());
